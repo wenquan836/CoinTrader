@@ -1,0 +1,177 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32516.85
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinTrader.Common", "CoinTrader.Common\CoinTrader.Common.csproj", "{A2F3930D-27A3-43ED-8F0B-E73142DB0C0A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{BB3237C7-E19C-4232-B875-6658ABDD184A}"
+	ProjectSection(SolutionItems) = preProject
+		MailKit\.nuget\packages.config = MailKit\.nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinTrader.Forms", "CoinTrader.Forms\CoinTrader.Forms.csproj", "{EF49D2E1-A368-4FD9-A896-7F2177523FED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinTrader.OKXCore", "CoinTrader.OKXCore\OKXCore\CoinTrader.OKXCore.csproj", "{61478E8E-94FD-42B1-9E94-69BA5A04420B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinTrader.Strategies", "CoinTrader.Strategies\CoinTrader.Strategies.csproj", "{E4CCF933-B10F-40E4-B170-F28F7217124F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug_Ubuntu|Any CPU = Debug_Ubuntu|Any CPU
+		Debug_Ubuntu|x64 = Debug_Ubuntu|x64
+		Debug_Ubuntu|x86 = Debug_Ubuntu|x86
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release_Ubuntu|Any CPU = Release_Ubuntu|Any CPU
+		Release_Ubuntu|x64 = Release_Ubuntu|x64
+		Release_Ubuntu|x86 = Release_Ubuntu|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A2F3930D-27A3-43ED-8F0B-E73142DB0C0A}.Debug_Ubuntu|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2F3930D-27A3-43ED-8F0B-E73142DB0C0A}.Debug_Ubuntu|Any CPU.Build.0 = Debug|Any CPU
+		{A2F3930D-27A3-43ED-8F0B-E73142DB0C0A}.Debug_Ubuntu|x64.ActiveCfg = Debug|Any CPU
+		{A2F3930D-27A3-43ED-8F0B-E73142DB0C0A}.Debug_Ubuntu|x64.Build.0 = Debug|Any CPU
+		{A2F3930D-27A3-43ED-8F0B-E73142DB0C0A}.Debug_Ubuntu|x86.ActiveCfg = Debug|Any CPU
+		{A2F3930D-27A3-43ED-8F0B-E73142DB0C0A}.Debug_Ubuntu|x86.Build.0 = Debug|Any CPU
+		{A2F3930D-27A3-43ED-8F0B-E73142DB0C0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2F3930D-27A3-43ED-8F0B-E73142DB0C0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2F3930D-27A3-43ED-8F0B-E73142DB0C0A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A2F3930D-27A3-43ED-8F0B-E73142DB0C0A}.Debug|x64.Build.0 = Debug|Any CPU
+		{A2F3930D-27A3-43ED-8F0B-E73142DB0C0A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A2F3930D-27A3-43ED-8F0B-E73142DB0C0A}.Debug|x86.Build.0 = Debug|Any CPU
+		{A2F3930D-27A3-43ED-8F0B-E73142DB0C0A}.Release_Ubuntu|Any CPU.ActiveCfg = Release|Any CPU
+		{A2F3930D-27A3-43ED-8F0B-E73142DB0C0A}.Release_Ubuntu|Any CPU.Build.0 = Release|Any CPU
+		{A2F3930D-27A3-43ED-8F0B-E73142DB0C0A}.Release_Ubuntu|x64.ActiveCfg = Release|Any CPU
+		{A2F3930D-27A3-43ED-8F0B-E73142DB0C0A}.Release_Ubuntu|x64.Build.0 = Release|Any CPU
+		{A2F3930D-27A3-43ED-8F0B-E73142DB0C0A}.Release_Ubuntu|x86.ActiveCfg = Release|Any CPU
+		{A2F3930D-27A3-43ED-8F0B-E73142DB0C0A}.Release_Ubuntu|x86.Build.0 = Release|Any CPU
+		{A2F3930D-27A3-43ED-8F0B-E73142DB0C0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2F3930D-27A3-43ED-8F0B-E73142DB0C0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2F3930D-27A3-43ED-8F0B-E73142DB0C0A}.Release|x64.ActiveCfg = Release|Any CPU
+		{A2F3930D-27A3-43ED-8F0B-E73142DB0C0A}.Release|x64.Build.0 = Release|Any CPU
+		{A2F3930D-27A3-43ED-8F0B-E73142DB0C0A}.Release|x86.ActiveCfg = Release|Any CPU
+		{A2F3930D-27A3-43ED-8F0B-E73142DB0C0A}.Release|x86.Build.0 = Release|Any CPU
+		{EF49D2E1-A368-4FD9-A896-7F2177523FED}.Debug_Ubuntu|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF49D2E1-A368-4FD9-A896-7F2177523FED}.Debug_Ubuntu|Any CPU.Build.0 = Debug|Any CPU
+		{EF49D2E1-A368-4FD9-A896-7F2177523FED}.Debug_Ubuntu|x64.ActiveCfg = Debug|Any CPU
+		{EF49D2E1-A368-4FD9-A896-7F2177523FED}.Debug_Ubuntu|x64.Build.0 = Debug|Any CPU
+		{EF49D2E1-A368-4FD9-A896-7F2177523FED}.Debug_Ubuntu|x86.ActiveCfg = Debug|x86
+		{EF49D2E1-A368-4FD9-A896-7F2177523FED}.Debug_Ubuntu|x86.Build.0 = Debug|x86
+		{EF49D2E1-A368-4FD9-A896-7F2177523FED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF49D2E1-A368-4FD9-A896-7F2177523FED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF49D2E1-A368-4FD9-A896-7F2177523FED}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{EF49D2E1-A368-4FD9-A896-7F2177523FED}.Debug|x64.Build.0 = Debug|Any CPU
+		{EF49D2E1-A368-4FD9-A896-7F2177523FED}.Debug|x86.ActiveCfg = Debug|x86
+		{EF49D2E1-A368-4FD9-A896-7F2177523FED}.Debug|x86.Build.0 = Debug|x86
+		{EF49D2E1-A368-4FD9-A896-7F2177523FED}.Release_Ubuntu|Any CPU.ActiveCfg = Release|Any CPU
+		{EF49D2E1-A368-4FD9-A896-7F2177523FED}.Release_Ubuntu|Any CPU.Build.0 = Release|Any CPU
+		{EF49D2E1-A368-4FD9-A896-7F2177523FED}.Release_Ubuntu|x64.ActiveCfg = Release|Any CPU
+		{EF49D2E1-A368-4FD9-A896-7F2177523FED}.Release_Ubuntu|x64.Build.0 = Release|Any CPU
+		{EF49D2E1-A368-4FD9-A896-7F2177523FED}.Release_Ubuntu|x86.ActiveCfg = Release|x86
+		{EF49D2E1-A368-4FD9-A896-7F2177523FED}.Release_Ubuntu|x86.Build.0 = Release|x86
+		{EF49D2E1-A368-4FD9-A896-7F2177523FED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF49D2E1-A368-4FD9-A896-7F2177523FED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF49D2E1-A368-4FD9-A896-7F2177523FED}.Release|x64.ActiveCfg = Release|Any CPU
+		{EF49D2E1-A368-4FD9-A896-7F2177523FED}.Release|x64.Build.0 = Release|Any CPU
+		{EF49D2E1-A368-4FD9-A896-7F2177523FED}.Release|x86.ActiveCfg = Release|x86
+		{EF49D2E1-A368-4FD9-A896-7F2177523FED}.Release|x86.Build.0 = Release|x86
+		{61478E8E-94FD-42B1-9E94-69BA5A04420B}.Debug_Ubuntu|Any CPU.ActiveCfg = Debug|Any CPU
+		{61478E8E-94FD-42B1-9E94-69BA5A04420B}.Debug_Ubuntu|Any CPU.Build.0 = Debug|Any CPU
+		{61478E8E-94FD-42B1-9E94-69BA5A04420B}.Debug_Ubuntu|x64.ActiveCfg = Debug|Any CPU
+		{61478E8E-94FD-42B1-9E94-69BA5A04420B}.Debug_Ubuntu|x64.Build.0 = Debug|Any CPU
+		{61478E8E-94FD-42B1-9E94-69BA5A04420B}.Debug_Ubuntu|x86.ActiveCfg = Debug|Any CPU
+		{61478E8E-94FD-42B1-9E94-69BA5A04420B}.Debug_Ubuntu|x86.Build.0 = Debug|Any CPU
+		{61478E8E-94FD-42B1-9E94-69BA5A04420B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61478E8E-94FD-42B1-9E94-69BA5A04420B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61478E8E-94FD-42B1-9E94-69BA5A04420B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{61478E8E-94FD-42B1-9E94-69BA5A04420B}.Debug|x64.Build.0 = Debug|Any CPU
+		{61478E8E-94FD-42B1-9E94-69BA5A04420B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{61478E8E-94FD-42B1-9E94-69BA5A04420B}.Debug|x86.Build.0 = Debug|Any CPU
+		{61478E8E-94FD-42B1-9E94-69BA5A04420B}.Release_Ubuntu|Any CPU.ActiveCfg = Release|Any CPU
+		{61478E8E-94FD-42B1-9E94-69BA5A04420B}.Release_Ubuntu|Any CPU.Build.0 = Release|Any CPU
+		{61478E8E-94FD-42B1-9E94-69BA5A04420B}.Release_Ubuntu|x64.ActiveCfg = Release|Any CPU
+		{61478E8E-94FD-42B1-9E94-69BA5A04420B}.Release_Ubuntu|x64.Build.0 = Release|Any CPU
+		{61478E8E-94FD-42B1-9E94-69BA5A04420B}.Release_Ubuntu|x86.ActiveCfg = Release|Any CPU
+		{61478E8E-94FD-42B1-9E94-69BA5A04420B}.Release_Ubuntu|x86.Build.0 = Release|Any CPU
+		{61478E8E-94FD-42B1-9E94-69BA5A04420B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61478E8E-94FD-42B1-9E94-69BA5A04420B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61478E8E-94FD-42B1-9E94-69BA5A04420B}.Release|x64.ActiveCfg = Release|Any CPU
+		{61478E8E-94FD-42B1-9E94-69BA5A04420B}.Release|x64.Build.0 = Release|Any CPU
+		{61478E8E-94FD-42B1-9E94-69BA5A04420B}.Release|x86.ActiveCfg = Release|Any CPU
+		{61478E8E-94FD-42B1-9E94-69BA5A04420B}.Release|x86.Build.0 = Release|Any CPU
+		{E4CCF933-B10F-40E4-B170-F28F7217124F}.Debug_Ubuntu|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4CCF933-B10F-40E4-B170-F28F7217124F}.Debug_Ubuntu|Any CPU.Build.0 = Debug|Any CPU
+		{E4CCF933-B10F-40E4-B170-F28F7217124F}.Debug_Ubuntu|x64.ActiveCfg = Debug|Any CPU
+		{E4CCF933-B10F-40E4-B170-F28F7217124F}.Debug_Ubuntu|x64.Build.0 = Debug|Any CPU
+		{E4CCF933-B10F-40E4-B170-F28F7217124F}.Debug_Ubuntu|x86.ActiveCfg = Debug|Any CPU
+		{E4CCF933-B10F-40E4-B170-F28F7217124F}.Debug_Ubuntu|x86.Build.0 = Debug|Any CPU
+		{E4CCF933-B10F-40E4-B170-F28F7217124F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4CCF933-B10F-40E4-B170-F28F7217124F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4CCF933-B10F-40E4-B170-F28F7217124F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E4CCF933-B10F-40E4-B170-F28F7217124F}.Debug|x64.Build.0 = Debug|Any CPU
+		{E4CCF933-B10F-40E4-B170-F28F7217124F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E4CCF933-B10F-40E4-B170-F28F7217124F}.Debug|x86.Build.0 = Debug|Any CPU
+		{E4CCF933-B10F-40E4-B170-F28F7217124F}.Release_Ubuntu|Any CPU.ActiveCfg = Release|Any CPU
+		{E4CCF933-B10F-40E4-B170-F28F7217124F}.Release_Ubuntu|Any CPU.Build.0 = Release|Any CPU
+		{E4CCF933-B10F-40E4-B170-F28F7217124F}.Release_Ubuntu|x64.ActiveCfg = Release|Any CPU
+		{E4CCF933-B10F-40E4-B170-F28F7217124F}.Release_Ubuntu|x64.Build.0 = Release|Any CPU
+		{E4CCF933-B10F-40E4-B170-F28F7217124F}.Release_Ubuntu|x86.ActiveCfg = Release|Any CPU
+		{E4CCF933-B10F-40E4-B170-F28F7217124F}.Release_Ubuntu|x86.Build.0 = Release|Any CPU
+		{E4CCF933-B10F-40E4-B170-F28F7217124F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4CCF933-B10F-40E4-B170-F28F7217124F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4CCF933-B10F-40E4-B170-F28F7217124F}.Release|x64.ActiveCfg = Release|Any CPU
+		{E4CCF933-B10F-40E4-B170-F28F7217124F}.Release|x64.Build.0 = Release|Any CPU
+		{E4CCF933-B10F-40E4-B170-F28F7217124F}.Release|x86.ActiveCfg = Release|Any CPU
+		{E4CCF933-B10F-40E4-B170-F28F7217124F}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D254777D-4612-427E-9D51-666456E41ED9}
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = MailKit\MailKit.Net45.csproj
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.inheritsSet = null
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.AlignEmbeddedUsingStatements = False
+		$2.AlignEmbeddedIfStatements = False
+		$2.NamespaceBraceStyle = EndOfLine
+		$2.StructBraceStyle = EndOfLine
+		$2.EnumBraceStyle = EndOfLine
+		$2.BeforeIndexerDeclarationBracket = False
+		$2.AfterDelegateDeclarationParameterComma = True
+		$2.BeforeSizeOfParentheses = True
+		$2.BeforeTypeOfParentheses = True
+		$2.SpacesAfterTypecast = True
+		$2.BlankLinesBeforeUsings = 1
+		$2.scope = text/x-csharp
+		$2.IndentSwitchSection = False
+		$2.NewLinesForBracesInProperties = False
+		$2.NewLinesForBracesInAccessors = False
+		$2.NewLinesForBracesInAnonymousMethods = False
+		$2.NewLinesForBracesInControlBlocks = False
+		$2.NewLinesForBracesInAnonymousTypes = False
+		$2.NewLinesForBracesInObjectCollectionArrayInitializers = False
+		$2.NewLinesForBracesInLambdaExpressionBody = False
+		$2.NewLineForElse = False
+		$2.NewLineForCatch = False
+		$2.NewLineForFinally = False
+		$2.NewLineForMembersInObjectInit = False
+		$2.NewLineForMembersInAnonymousTypes = False
+		$2.NewLineForClausesInQuery = False
+		$2.SpacingAfterMethodDeclarationName = True
+		$2.SpaceAfterMethodCallName = True
+		$2.SpaceAfterCast = True
+		$0.StandardHeader = $3
+		$3.Text = @\r\n${FileName}\n \nAuthor: ${AuthorName} <${AuthorEmail}>\n\nCopyright (c) ${Year} ${CopyrightHolder}\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the "Software"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\nTHE SOFTWARE.\n
+	EndGlobalSection
+EndGlobal

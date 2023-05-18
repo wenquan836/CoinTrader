@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="en" style="background: #FFFFFF;height: 100%">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/klinecharts@latest/dist/klinecharts.min.js"></script>
+</head>
+<body style="margin: 0;height: 100%; width:100%">
+<div id="simple_chart" style="height: 100%; width:100%"></div>
+<script type="text/javascript">
+    var chart = null;
+  window.onload = function () {
+        // Init chart
+        chart = klinecharts.init('simple_chart');
+        // Create main technical indicator MA
+        //chart.createTechnicalIndicator('MA', false, { id: 'candle_pane' });
+        // Create sub technical indicator VOL
+        // chart.createTechnicalIndicator('VOL');
+        chart.loadMore(loadMore);
+        // Fill data
+    }
+
+    function loadMore(ts) {
+        if (window.app) {
+            return app.LoadMore(ts);
+        }
+
+        return null;
+    }
+
+    function loadData(dataList)
+    {
+        
+        chart.clearData();
+        chart.applyNewData(dataList,true);
+    }
+
+    //设置价格和数量精度
+    function setPriceVolumePrecision(pricePrec, volPrec) {
+        if (chart != null) {
+            chart.setPriceVolumePrecision(pricePrec, volPrec);
+        }
+    }
+
+    function updateData(data)
+    {
+        chart.updateData(data);
+    }
+</script>
+</body>
+</html>
