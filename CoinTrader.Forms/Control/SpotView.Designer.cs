@@ -30,6 +30,7 @@
             this.pnlBehavior = new System.Windows.Forms.FlowLayoutPanel();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabTrade = new System.Windows.Forms.TabPage();
+            this.tickView1 = new CoinTrader.Forms.Control.TickView();
             this.lblMonitor = new System.Windows.Forms.Label();
             this.tabQuick = new System.Windows.Forms.TabPage();
             this.label5 = new System.Windows.Forms.Label();
@@ -44,14 +45,13 @@
             this.btnBuy = new System.Windows.Forms.Button();
             this.btnAllIn = new System.Windows.Forms.Button();
             this.btnClearAll = new System.Windows.Forms.Button();
+            this.tickView2 = new CoinTrader.Forms.Control.TickView();
             this.tabData = new System.Windows.Forms.TabPage();
             this.pnlMonitor = new System.Windows.Forms.FlowLayoutPanel();
             this.tabDepth = new System.Windows.Forms.TabPage();
+            this.depthView1 = new CoinTrader.Forms.Control.DepthView();
             this.btnClose = new System.Windows.Forms.Button();
             this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.tickView1 = new CoinTrader.Forms.Control.TickView();
-            this.tickView2 = new CoinTrader.Forms.Control.TickView();
-            this.depthView1 = new CoinTrader.Forms.Control.DepthView();
             this.groupBox3.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tabTrade.SuspendLayout();
@@ -172,7 +172,7 @@
             this.pnlBehavior.Location = new System.Drawing.Point(4, 177);
             this.pnlBehavior.Margin = new System.Windows.Forms.Padding(4);
             this.pnlBehavior.Name = "pnlBehavior";
-            this.pnlBehavior.Size = new System.Drawing.Size(590, 164);
+            this.pnlBehavior.Size = new System.Drawing.Size(594, 164);
             this.pnlBehavior.TabIndex = 47;
             // 
             // tabMain
@@ -186,7 +186,7 @@
             this.tabMain.Margin = new System.Windows.Forms.Padding(4);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(606, 380);
+            this.tabMain.Size = new System.Drawing.Size(610, 380);
             this.tabMain.TabIndex = 48;
             this.tabMain.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             // 
@@ -203,10 +203,17 @@
             this.tabTrade.Margin = new System.Windows.Forms.Padding(4);
             this.tabTrade.Name = "tabTrade";
             this.tabTrade.Padding = new System.Windows.Forms.Padding(4);
-            this.tabTrade.Size = new System.Drawing.Size(598, 345);
+            this.tabTrade.Size = new System.Drawing.Size(602, 345);
             this.tabTrade.TabIndex = 0;
             this.tabTrade.Text = "交易";
             this.tabTrade.UseVisualStyleBackColor = true;
+            // 
+            // tickView1
+            // 
+            this.tickView1.Location = new System.Drawing.Point(349, 18);
+            this.tickView1.Name = "tickView1";
+            this.tickView1.Size = new System.Drawing.Size(245, 81);
+            this.tickView1.TabIndex = 51;
             // 
             // lblMonitor
             // 
@@ -235,7 +242,7 @@
             this.tabQuick.Controls.Add(this.tickView2);
             this.tabQuick.Location = new System.Drawing.Point(4, 31);
             this.tabQuick.Name = "tabQuick";
-            this.tabQuick.Size = new System.Drawing.Size(598, 350);
+            this.tabQuick.Size = new System.Drawing.Size(598, 345);
             this.tabQuick.TabIndex = 4;
             this.tabQuick.Text = "快捷";
             this.tabQuick.UseVisualStyleBackColor = true;
@@ -366,6 +373,13 @@
             this.btnClearAll.Visible = false;
             this.btnClearAll.Click += new System.EventHandler(this.btnClearAll_Click);
             // 
+            // tickView2
+            // 
+            this.tickView2.Location = new System.Drawing.Point(322, 165);
+            this.tickView2.Name = "tickView2";
+            this.tickView2.Size = new System.Drawing.Size(261, 81);
+            this.tickView2.TabIndex = 45;
+            // 
             // tabData
             // 
             this.tabData.Controls.Add(this.pnlMonitor);
@@ -373,7 +387,7 @@
             this.tabData.Margin = new System.Windows.Forms.Padding(4);
             this.tabData.Name = "tabData";
             this.tabData.Padding = new System.Windows.Forms.Padding(4);
-            this.tabData.Size = new System.Drawing.Size(598, 350);
+            this.tabData.Size = new System.Drawing.Size(598, 345);
             this.tabData.TabIndex = 1;
             this.tabData.Text = "数据";
             this.tabData.UseVisualStyleBackColor = true;
@@ -384,7 +398,7 @@
             this.pnlMonitor.Location = new System.Drawing.Point(4, 4);
             this.pnlMonitor.Margin = new System.Windows.Forms.Padding(4);
             this.pnlMonitor.Name = "pnlMonitor";
-            this.pnlMonitor.Size = new System.Drawing.Size(590, 342);
+            this.pnlMonitor.Size = new System.Drawing.Size(590, 337);
             this.pnlMonitor.TabIndex = 0;
             // 
             // tabDepth
@@ -393,15 +407,24 @@
             this.tabDepth.Location = new System.Drawing.Point(4, 31);
             this.tabDepth.Margin = new System.Windows.Forms.Padding(4);
             this.tabDepth.Name = "tabDepth";
-            this.tabDepth.Size = new System.Drawing.Size(598, 350);
+            this.tabDepth.Size = new System.Drawing.Size(598, 345);
             this.tabDepth.TabIndex = 2;
             this.tabDepth.Text = "深度";
             this.tabDepth.UseVisualStyleBackColor = true;
             // 
+            // depthView1
+            // 
+            this.depthView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.depthView1.Location = new System.Drawing.Point(0, 0);
+            this.depthView1.Margin = new System.Windows.Forms.Padding(11, 9, 11, 9);
+            this.depthView1.Name = "depthView1";
+            this.depthView1.Size = new System.Drawing.Size(598, 345);
+            this.depthView1.TabIndex = 0;
+            // 
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.Location = new System.Drawing.Point(562, -2);
+            this.btnClose.Location = new System.Drawing.Point(566, -2);
             this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(42, 33);
@@ -416,29 +439,6 @@
             this.timer3.Interval = 1000;
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
             // 
-            // tickView1
-            // 
-            this.tickView1.Location = new System.Drawing.Point(349, 18);
-            this.tickView1.Name = "tickView1";
-            this.tickView1.Size = new System.Drawing.Size(245, 81);
-            this.tickView1.TabIndex = 51;
-            // 
-            // tickView2
-            // 
-            this.tickView2.Location = new System.Drawing.Point(322, 165);
-            this.tickView2.Name = "tickView2";
-            this.tickView2.Size = new System.Drawing.Size(261, 81);
-            this.tickView2.TabIndex = 45;
-            // 
-            // depthView1
-            // 
-            this.depthView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.depthView1.Location = new System.Drawing.Point(0, 0);
-            this.depthView1.Margin = new System.Windows.Forms.Padding(11, 9, 11, 9);
-            this.depthView1.Name = "depthView1";
-            this.depthView1.Size = new System.Drawing.Size(598, 350);
-            this.depthView1.TabIndex = 0;
-            // 
             // SpotView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
@@ -448,7 +448,7 @@
             this.Controls.Add(this.tabMain);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SpotView";
-            this.Size = new System.Drawing.Size(606, 380);
+            this.Size = new System.Drawing.Size(610, 380);
             this.ParentChanged += new System.EventHandler(this.SpotView_ParentChanged);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();

@@ -8,7 +8,7 @@ namespace CoinTrader.Forms.Strategies
     public class UsdxFundsStrategy : FundsStrategyBase
     {
         [StrategyParameter(Name = "交易账户持币数量", Min = 0, Max = 9999999999)]
-        public decimal TradingHold{ get; set; }
+        public decimal TradingHold { get; set; } = 10000;
 
         [StrategyParameter(Name = "差额阈值", Min = 1, Max = 1000000,Intro ="差额大于这个数时启动划转")]
         public decimal Threshold { get; set; } = 1;

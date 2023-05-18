@@ -65,7 +65,7 @@
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.Location = new System.Drawing.Point(565, 1);
+            this.btnClose.Location = new System.Drawing.Point(564, 1);
             this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(42, 33);
@@ -290,7 +290,7 @@
             this.tabPage3.Controls.Add(this.pnlMonitor);
             this.tabPage3.Location = new System.Drawing.Point(4, 31);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(600, 420);
+            this.tabPage3.Size = new System.Drawing.Size(600, 338);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "数据";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -300,7 +300,7 @@
             this.pnlMonitor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMonitor.Location = new System.Drawing.Point(0, 0);
             this.pnlMonitor.Name = "pnlMonitor";
-            this.pnlMonitor.Size = new System.Drawing.Size(600, 420);
+            this.pnlMonitor.Size = new System.Drawing.Size(600, 338);
             this.pnlMonitor.TabIndex = 0;
             // 
             // timerPosition
@@ -316,7 +316,7 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.tabControl1);
             this.Name = "SwapView";
-            this.Size = new System.Drawing.Size(611, 380);
+            this.Size = new System.Drawing.Size(610, 380);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
