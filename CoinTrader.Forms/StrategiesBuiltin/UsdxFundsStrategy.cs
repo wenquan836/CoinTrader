@@ -29,14 +29,14 @@ namespace CoinTrader.Forms.Strategies
                     return;
 
                 BalanceType from = diff < 0 ? BalanceType.Account : BalanceType.Trading;
-                BalanceType to = diff < 0 ? BalanceType.Trading : BalanceType.Account;
+                BalanceType to = diff > 0 ? BalanceType.Trading : BalanceType.Account;
 
                 if (diff < 0)
                     amount = Math.Min(Math.Abs(diff), wallet.AvailableInAccount);
 
                 this.Executing = true;
                 Transfer(from, to, amount);
-                Wait(1000);//等待一秒以同步余额信息
+                Wait(1.0f);//等待一秒以同步余额信息
                 this.Executing = false;
             }
         }
