@@ -284,9 +284,9 @@
     <Content Include="StrategiesCustomized\CustomSwapStrategy.csx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="StrategiesCustomized\Customer\Customer1BehaviorV2.csx">
+    <Compile Include="StrategiesCustomized\Customer\Customer1BehaviorV2.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </Compile>
     <Compile Include="StrategiesCustomized\Customer\SwapHedgeStrategy.cs" />
     <Compile Include="Entity\LoginAccount.cs" />
     <Compile Include="StrategiesCustomized\Customer\SpotGridBuyStrategy.cs" />
