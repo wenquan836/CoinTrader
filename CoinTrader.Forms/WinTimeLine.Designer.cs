@@ -114,7 +114,7 @@
             // 
             // trackBar2
             // 
-            this.trackBar2.Location = new System.Drawing.Point(131, 24);
+            this.trackBar2.Location = new System.Drawing.Point(119, 24);
             this.trackBar2.Maximum = 200;
             this.trackBar2.Name = "trackBar2";
             this.trackBar2.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -124,7 +124,7 @@
             // 
             // trackBar3
             // 
-            this.trackBar3.Location = new System.Drawing.Point(217, 24);
+            this.trackBar3.Location = new System.Drawing.Point(205, 24);
             this.trackBar3.Maximum = 200;
             this.trackBar3.Name = "trackBar3";
             this.trackBar3.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -134,7 +134,7 @@
             // 
             // trackBar4
             // 
-            this.trackBar4.Location = new System.Drawing.Point(303, 24);
+            this.trackBar4.Location = new System.Drawing.Point(291, 24);
             this.trackBar4.Maximum = 200;
             this.trackBar4.Name = "trackBar4";
             this.trackBar4.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -144,7 +144,7 @@
             // 
             // trackBar5
             // 
-            this.trackBar5.Location = new System.Drawing.Point(389, 24);
+            this.trackBar5.Location = new System.Drawing.Point(377, 24);
             this.trackBar5.Maximum = 200;
             this.trackBar5.Name = "trackBar5";
             this.trackBar5.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -154,7 +154,7 @@
             // 
             // trackBar6
             // 
-            this.trackBar6.Location = new System.Drawing.Point(475, 24);
+            this.trackBar6.Location = new System.Drawing.Point(463, 24);
             this.trackBar6.Maximum = 200;
             this.trackBar6.Name = "trackBar6";
             this.trackBar6.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -164,7 +164,7 @@
             // 
             // trackBar7
             // 
-            this.trackBar7.Location = new System.Drawing.Point(561, 24);
+            this.trackBar7.Location = new System.Drawing.Point(549, 24);
             this.trackBar7.Maximum = 200;
             this.trackBar7.Name = "trackBar7";
             this.trackBar7.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -174,7 +174,7 @@
             // 
             // trackBar8
             // 
-            this.trackBar8.Location = new System.Drawing.Point(647, 24);
+            this.trackBar8.Location = new System.Drawing.Point(635, 24);
             this.trackBar8.Maximum = 200;
             this.trackBar8.Name = "trackBar8";
             this.trackBar8.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -184,7 +184,7 @@
             // 
             // trackBar9
             // 
-            this.trackBar9.Location = new System.Drawing.Point(733, 24);
+            this.trackBar9.Location = new System.Drawing.Point(721, 24);
             this.trackBar9.Maximum = 200;
             this.trackBar9.Name = "trackBar9";
             this.trackBar9.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -194,7 +194,7 @@
             // 
             // trackBar10
             // 
-            this.trackBar10.Location = new System.Drawing.Point(819, 24);
+            this.trackBar10.Location = new System.Drawing.Point(807, 24);
             this.trackBar10.Maximum = 200;
             this.trackBar10.Name = "trackBar10";
             this.trackBar10.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -204,7 +204,7 @@
             // 
             // trackBar11
             // 
-            this.trackBar11.Location = new System.Drawing.Point(905, 24);
+            this.trackBar11.Location = new System.Drawing.Point(893, 24);
             this.trackBar11.Maximum = 200;
             this.trackBar11.Name = "trackBar11";
             this.trackBar11.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -214,7 +214,7 @@
             // 
             // trackBar12
             // 
-            this.trackBar12.Location = new System.Drawing.Point(991, 24);
+            this.trackBar12.Location = new System.Drawing.Point(979, 24);
             this.trackBar12.Maximum = 200;
             this.trackBar12.Name = "trackBar12";
             this.trackBar12.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -224,7 +224,7 @@
             // 
             // trackBar13
             // 
-            this.trackBar13.Location = new System.Drawing.Point(1077, 24);
+            this.trackBar13.Location = new System.Drawing.Point(1065, 24);
             this.trackBar13.Maximum = 200;
             this.trackBar13.Name = "trackBar13";
             this.trackBar13.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -234,7 +234,7 @@
             // 
             // trackBar14
             // 
-            this.trackBar14.Location = new System.Drawing.Point(1163, 24);
+            this.trackBar14.Location = new System.Drawing.Point(1151, 24);
             this.trackBar14.Maximum = 200;
             this.trackBar14.Name = "trackBar14";
             this.trackBar14.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -244,7 +244,7 @@
             // 
             // trackBar15
             // 
-            this.trackBar15.Location = new System.Drawing.Point(1249, 24);
+            this.trackBar15.Location = new System.Drawing.Point(1237, 24);
             this.trackBar15.Maximum = 200;
             this.trackBar15.Name = "trackBar15";
             this.trackBar15.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -254,7 +254,7 @@
             // 
             // trackBar16
             // 
-            this.trackBar16.Location = new System.Drawing.Point(1335, 24);
+            this.trackBar16.Location = new System.Drawing.Point(1323, 24);
             this.trackBar16.Maximum = 200;
             this.trackBar16.Name = "trackBar16";
             this.trackBar16.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -264,7 +264,7 @@
             // 
             // trackBar17
             // 
-            this.trackBar17.Location = new System.Drawing.Point(1421, 24);
+            this.trackBar17.Location = new System.Drawing.Point(1409, 24);
             this.trackBar17.Maximum = 200;
             this.trackBar17.Name = "trackBar17";
             this.trackBar17.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -274,7 +274,7 @@
             // 
             // trackBar18
             // 
-            this.trackBar18.Location = new System.Drawing.Point(1507, 24);
+            this.trackBar18.Location = new System.Drawing.Point(1495, 24);
             this.trackBar18.Maximum = 200;
             this.trackBar18.Name = "trackBar18";
             this.trackBar18.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -284,7 +284,7 @@
             // 
             // trackBar19
             // 
-            this.trackBar19.Location = new System.Drawing.Point(1593, 24);
+            this.trackBar19.Location = new System.Drawing.Point(1581, 24);
             this.trackBar19.Maximum = 200;
             this.trackBar19.Name = "trackBar19";
             this.trackBar19.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -294,7 +294,7 @@
             // 
             // trackBar20
             // 
-            this.trackBar20.Location = new System.Drawing.Point(1679, 24);
+            this.trackBar20.Location = new System.Drawing.Point(1667, 24);
             this.trackBar20.Maximum = 200;
             this.trackBar20.Name = "trackBar20";
             this.trackBar20.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -304,7 +304,7 @@
             // 
             // trackBar21
             // 
-            this.trackBar21.Location = new System.Drawing.Point(1765, 24);
+            this.trackBar21.Location = new System.Drawing.Point(1753, 24);
             this.trackBar21.Maximum = 200;
             this.trackBar21.Name = "trackBar21";
             this.trackBar21.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -314,7 +314,7 @@
             // 
             // trackBar22
             // 
-            this.trackBar22.Location = new System.Drawing.Point(1851, 24);
+            this.trackBar22.Location = new System.Drawing.Point(1839, 24);
             this.trackBar22.Maximum = 200;
             this.trackBar22.Name = "trackBar22";
             this.trackBar22.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -324,7 +324,7 @@
             // 
             // trackBar23
             // 
-            this.trackBar23.Location = new System.Drawing.Point(2021, 24);
+            this.trackBar23.Location = new System.Drawing.Point(2011, 24);
             this.trackBar23.Maximum = 200;
             this.trackBar23.Name = "trackBar23";
             this.trackBar23.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -334,7 +334,7 @@
             // 
             // trackBar24
             // 
-            this.trackBar24.Location = new System.Drawing.Point(1935, 24);
+            this.trackBar24.Location = new System.Drawing.Point(1925, 24);
             this.trackBar24.Maximum = 200;
             this.trackBar24.Name = "trackBar24";
             this.trackBar24.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -354,7 +354,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(127, 384);
+            this.label2.Location = new System.Drawing.Point(113, 384);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 21);
             this.label2.TabIndex = 1;
@@ -363,7 +363,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(213, 384);
+            this.label3.Location = new System.Drawing.Point(193, 384);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(42, 21);
             this.label3.TabIndex = 1;
@@ -372,7 +372,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(299, 384);
+            this.label4.Location = new System.Drawing.Point(273, 384);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(42, 21);
             this.label4.TabIndex = 1;
@@ -381,7 +381,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(385, 384);
+            this.label5.Location = new System.Drawing.Point(353, 384);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(42, 21);
             this.label5.TabIndex = 1;
@@ -390,7 +390,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(471, 384);
+            this.label6.Location = new System.Drawing.Point(433, 384);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(42, 21);
             this.label6.TabIndex = 1;
@@ -399,7 +399,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(557, 384);
+            this.label7.Location = new System.Drawing.Point(513, 384);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(42, 21);
             this.label7.TabIndex = 1;
@@ -408,7 +408,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(643, 384);
+            this.label8.Location = new System.Drawing.Point(593, 384);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(42, 21);
             this.label8.TabIndex = 1;
@@ -417,7 +417,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(729, 384);
+            this.label9.Location = new System.Drawing.Point(673, 384);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(42, 21);
             this.label9.TabIndex = 1;
@@ -426,7 +426,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(815, 384);
+            this.label10.Location = new System.Drawing.Point(753, 384);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(42, 21);
             this.label10.TabIndex = 1;
@@ -435,7 +435,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(901, 384);
+            this.label11.Location = new System.Drawing.Point(833, 384);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(53, 21);
             this.label11.TabIndex = 1;
@@ -444,7 +444,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(987, 384);
+            this.label12.Location = new System.Drawing.Point(924, 384);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(53, 21);
             this.label12.TabIndex = 1;
@@ -453,7 +453,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(1073, 384);
+            this.label13.Location = new System.Drawing.Point(1015, 384);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(53, 21);
             this.label13.TabIndex = 1;
@@ -462,7 +462,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(1159, 384);
+            this.label14.Location = new System.Drawing.Point(1106, 384);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(53, 21);
             this.label14.TabIndex = 1;
@@ -471,7 +471,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(1245, 384);
+            this.label15.Location = new System.Drawing.Point(1197, 384);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(53, 21);
             this.label15.TabIndex = 1;
@@ -480,7 +480,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(1331, 384);
+            this.label16.Location = new System.Drawing.Point(1288, 384);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(53, 21);
             this.label16.TabIndex = 1;
@@ -489,7 +489,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(1417, 384);
+            this.label17.Location = new System.Drawing.Point(1379, 384);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(53, 21);
             this.label17.TabIndex = 1;
@@ -498,7 +498,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(1503, 384);
+            this.label18.Location = new System.Drawing.Point(1470, 384);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(53, 21);
             this.label18.TabIndex = 1;
@@ -507,7 +507,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(1589, 384);
+            this.label19.Location = new System.Drawing.Point(1561, 384);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(53, 21);
             this.label19.TabIndex = 1;
@@ -516,7 +516,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(1675, 384);
+            this.label20.Location = new System.Drawing.Point(1652, 384);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(53, 21);
             this.label20.TabIndex = 1;
@@ -525,7 +525,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(1761, 384);
+            this.label21.Location = new System.Drawing.Point(1743, 384);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(53, 21);
             this.label21.TabIndex = 1;
@@ -534,7 +534,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(1847, 384);
+            this.label22.Location = new System.Drawing.Point(1834, 384);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(53, 21);
             this.label22.TabIndex = 1;
@@ -543,7 +543,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(1931, 384);
+            this.label23.Location = new System.Drawing.Point(1925, 384);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(53, 21);
             this.label23.TabIndex = 1;
@@ -552,7 +552,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(2017, 384);
+            this.label24.Location = new System.Drawing.Point(2007, 384);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(53, 21);
             this.label24.TabIndex = 1;
@@ -562,7 +562,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2119, 476);
+            this.ClientSize = new System.Drawing.Size(2119, 452);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.label23);
             this.Controls.Add(this.label22);
@@ -612,7 +612,7 @@
             this.Controls.Add(this.trackBar2);
             this.Controls.Add(this.trackBar1);
             this.Name = "WinTimeLine";
-            this.Text = "时间设置";
+            this.Text = "时间轴设置";
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).EndInit();

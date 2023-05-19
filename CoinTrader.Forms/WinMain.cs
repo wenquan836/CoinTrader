@@ -12,9 +12,7 @@ using CoinTrader.OKXCore.Okex;
 using CoinTrader.OKXCore.Manager;
 using CoinTrader.Strategies;
 using CoinTrader.Forms.StrategiesRuntime;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 using CommonTools.Coroutines;
-using System.Collections;
 
 namespace CoinTrader.Forms
 {
@@ -47,38 +45,24 @@ namespace CoinTrader.Forms
             if (Config.Instance.ApiInfo.IsSimulated)
                 text += "   模拟盘";
 
+            text += $"  账号：{Config.Instance.Account.LoginName}";
+
             this.Text = text;
         }
+
+        /// <summary>
+        /// 生成币种的下拉菜单
+        /// </summary>
         private void ReloadCurrencyMenus()
         {
             #region 生成现货菜单
 
             GenerateMenuItems(mnSpots, StrategyType.Spot, OnSpotStrategyMenuItemClick, CloseAllSpot);
-
-            /*
-            this.mnSpots.DropDownItems.Clear();
-            var spotStategyGroups = StrategyManager.Instance.GetStrategyGroups(StrategyType.Spot);
-            var currencies = Config.Instance.PlatformConfig.Currencies;
-            foreach (string s in currencies)
-            {
-                var item = new ToolStripMenuItem();
-                item.Text = s.Trim().ToUpper();
-
-                foreach (var group in spotStategyGroups)
-                {
-                    var itemCell = new ToolStripMenuItem(group.name);
-                    itemCell.Tag = group;
-                    itemCell.Click += this.OnSpotStrategyMenuItemClick;
-                    itemCell.Name = s;
-                    item.DropDownItems.Add(itemCell);
-                }
-
-                this.mnSpots.DropDownItems.Add(item);
-            }
-            */
             #endregion
 
             #region 生成合约菜单
+
+            mnSwap.Visible = AccountManager.Current.SwapOpened;
 
             if (AccountManager.Current.SwapOpened)
             {
@@ -285,8 +269,6 @@ namespace CoinTrader.Forms
 
         private void ChangeMarketType()
         {
-            this.menuWindow.Visible = false;
-            this.menuTeam.Visible = false;
             this.mniBank.Visible = false;
             this.mniBrowser.Visible = false;
             this.mnSwap.Visible = AccountManager.Current.SwapOpened;
@@ -303,28 +285,26 @@ namespace CoinTrader.Forms
             }
 
             int mindex = 0;
-            if (USDXWallet.Instance != null)
+
+            IEnumerable<MonitorBase> monitors = MonitorSchedule.Default.GetAllMonitor();
+
+            foreach (var m in monitors)
             {
-                IEnumerable<MonitorBase> monitors = MonitorSchedule.Default.GetAllMonitor();
-
-                foreach (var m in monitors)
+                MonitorView mv;
+                if (this.pnlMonitor.Controls.Count > mindex)
                 {
-                    MonitorView mv;
-                    if (this.pnlMonitor.Controls.Count > mindex)
-                    {
-                        mv = this.pnlMonitor.Controls[mindex] as MonitorView;
-                        mv.Visible = true;
-                    }
-                    else
-                    {
-                        mv = new MonitorView();
-                        this.pnlMonitor.Controls.Add(mv);
-                    }
-
-                    mv.monitor = m;
-
-                    mindex++;
+                    mv = this.pnlMonitor.Controls[mindex] as MonitorView;
+                    mv.Visible = true;
                 }
+                else
+                {
+                    mv = new MonitorView();
+                    this.pnlMonitor.Controls.Add(mv);
+                }
+
+                mv.monitor = m;
+
+                mindex++;
             }
         }
 
@@ -332,20 +312,7 @@ namespace CoinTrader.Forms
         {
             var views = this.pnlMyOrders.Controls;
 
-
             OrderView view = views.Count > index ? views[index] as OrderView : null; // new OrderView();
-
-            /*
-            foreach (var control in this.pnlMyOrders.Controls)
-            {
-                if(!(control as OrderView).Visible)
-                {
-                    view = control as OrderView;
-                    view.Visible = true;
-                    break;
-                }
-            }
-            */
 
             if (view == null)
             {
@@ -360,9 +327,9 @@ namespace CoinTrader.Forms
             return view;
         }
 
-        /**
-         *我的订单监视
-         */
+        /// <summary>
+        /// 显示订单列表
+        /// </summary>
         private void ShowMyOrders()
         {
             int index = 0;
@@ -551,16 +518,6 @@ namespace CoinTrader.Forms
             win.Show();
         }
 
-        private void 订单管理ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 销售统计ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
             (new WinPassword()).ShowDialog();
@@ -575,10 +532,6 @@ namespace CoinTrader.Forms
         {
         }
 
-        private void 团队管理ToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void WinMain_FormClosed(object sender, FormClosedEventArgs e)
         {

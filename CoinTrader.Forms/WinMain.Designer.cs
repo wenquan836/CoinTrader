@@ -70,13 +70,6 @@
             this.合约查询ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuSwapList = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuWindow = new System.Windows.Forms.ToolStripMenuItem();
-            this.miContactMgr = new System.Windows.Forms.ToolStripMenuItem();
-            this.销售统计ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
-            this.交叉盘ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuTeam = new System.Windows.Forms.ToolStripMenuItem();
-            this.团队管理ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.其他ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.交叉盘ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlMain = new System.Windows.Forms.Panel();
@@ -367,8 +360,6 @@
             this.设置ToolStripMenuItem,
             this.mnSpots,
             this.mnSwap,
-            this.menuWindow,
-            this.menuTeam,
             this.其他ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -465,79 +456,28 @@
             // 持仓管理ToolStripMenuItem
             // 
             this.持仓管理ToolStripMenuItem.Name = "持仓管理ToolStripMenuItem";
-            this.持仓管理ToolStripMenuItem.Size = new System.Drawing.Size(213, 40);
+            this.持仓管理ToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.持仓管理ToolStripMenuItem.Text = "持仓管理";
             this.持仓管理ToolStripMenuItem.Click += new System.EventHandler(this.持仓管理ToolStripMenuItem_Click);
             // 
             // 合约查询ToolStripMenuItem
             // 
             this.合约查询ToolStripMenuItem.Name = "合约查询ToolStripMenuItem";
-            this.合约查询ToolStripMenuItem.Size = new System.Drawing.Size(213, 40);
+            this.合约查询ToolStripMenuItem.Size = new System.Drawing.Size(315, 40);
             this.合约查询ToolStripMenuItem.Text = "合约查询";
             this.合约查询ToolStripMenuItem.Click += new System.EventHandler(this.合约查询ToolStripMenuItem_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(210, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(312, 6);
             // 
             // mnuSwapList
             // 
             this.mnuSwapList.Name = "mnuSwapList";
-            this.mnuSwapList.Size = new System.Drawing.Size(213, 40);
+            this.mnuSwapList.Size = new System.Drawing.Size(315, 40);
             this.mnuSwapList.Text = "策略交易";
             this.mnuSwapList.Click += new System.EventHandler(this.合约管理ToolStripMenuItem_Click);
-            // 
-            // menuWindow
-            // 
-            this.menuWindow.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.miContactMgr,
-            this.销售统计ToolStripMenuItem,
-            this.toolStripMenuItem3,
-            this.交叉盘ToolStripMenuItem});
-            this.menuWindow.Name = "menuWindow";
-            this.menuWindow.Size = new System.Drawing.Size(72, 32);
-            this.menuWindow.Text = "窗口";
-            // 
-            // miContactMgr
-            // 
-            this.miContactMgr.Name = "miContactMgr";
-            this.miContactMgr.Size = new System.Drawing.Size(213, 40);
-            this.miContactMgr.Text = "订单管理";
-            this.miContactMgr.Click += new System.EventHandler(this.订单管理ToolStripMenuItem_Click);
-            // 
-            // 销售统计ToolStripMenuItem
-            // 
-            this.销售统计ToolStripMenuItem.Name = "销售统计ToolStripMenuItem";
-            this.销售统计ToolStripMenuItem.Size = new System.Drawing.Size(213, 40);
-            this.销售统计ToolStripMenuItem.Text = "销售数据";
-            this.销售统计ToolStripMenuItem.Click += new System.EventHandler(this.销售统计ToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(210, 6);
-            // 
-            // 交叉盘ToolStripMenuItem
-            // 
-            this.交叉盘ToolStripMenuItem.Name = "交叉盘ToolStripMenuItem";
-            this.交叉盘ToolStripMenuItem.Size = new System.Drawing.Size(213, 40);
-            this.交叉盘ToolStripMenuItem.Text = "交叉盘";
-            // 
-            // menuTeam
-            // 
-            this.menuTeam.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.团队管理ToolStripMenuItem1});
-            this.menuTeam.Name = "menuTeam";
-            this.menuTeam.Size = new System.Drawing.Size(114, 32);
-            this.menuTeam.Text = "团队管理";
-            // 
-            // 团队管理ToolStripMenuItem1
-            // 
-            this.团队管理ToolStripMenuItem1.Name = "团队管理ToolStripMenuItem1";
-            this.团队管理ToolStripMenuItem1.Size = new System.Drawing.Size(213, 40);
-            this.团队管理ToolStripMenuItem1.Text = "团队管理";
-            this.团队管理ToolStripMenuItem1.Click += new System.EventHandler(this.团队管理ToolStripMenuItem1_Click);
             // 
             // 其他ToolStripMenuItem
             // 
@@ -550,7 +490,7 @@
             // 交叉盘ToolStripMenuItem1
             // 
             this.交叉盘ToolStripMenuItem1.Name = "交叉盘ToolStripMenuItem1";
-            this.交叉盘ToolStripMenuItem1.Size = new System.Drawing.Size(192, 40);
+            this.交叉盘ToolStripMenuItem1.Size = new System.Drawing.Size(315, 40);
             this.交叉盘ToolStripMenuItem1.Text = "交叉盘";
             this.交叉盘ToolStripMenuItem1.Click += new System.EventHandler(this.交叉盘ToolStripMenuItem1_Click);
             // 
@@ -647,28 +587,21 @@
         private System.Windows.Forms.ToolStripMenuItem 设置ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 账号设置ToolStripMenuItem;
         private System.Windows.Forms.Panel pnlMain;
-        private System.Windows.Forms.ToolStripMenuItem menuWindow;
-        private System.Windows.Forms.ToolStripMenuItem miContactMgr;
         private System.Windows.Forms.FlowLayoutPanel pnlMarketViews;
         private System.Windows.Forms.ToolStripMenuItem mnSpots;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblTotalMoney;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ToolStripMenuItem 销售统计ToolStripMenuItem;
         private System.Windows.Forms.ImageList imageList2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem mniBrowser;
         private System.Windows.Forms.ToolStripMenuItem mniBank;
-        private System.Windows.Forms.ToolStripMenuItem menuTeam;
-        private System.Windows.Forms.ToolStripMenuItem 团队管理ToolStripMenuItem1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripMenuItem mnSwap;
         private System.Windows.Forms.ToolStripMenuItem 持仓管理ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 合约查询ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnuSwapList;
         private System.Windows.Forms.ToolStripMenuItem mniCopyConfig;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
-        private System.Windows.Forms.ToolStripMenuItem 交叉盘ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 其他ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 交叉盘ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 打开所有运行ToolStripMenuItem1;
