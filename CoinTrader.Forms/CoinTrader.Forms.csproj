@@ -284,16 +284,10 @@
     <Content Include="StrategiesCustomized\SampleSwapStrategy.csx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Compile Include="StrategiesCustomized\Customer\Customer1BehaviorV2.cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="StrategiesCustomized\Customer\SwapHedgeStrategy.cs" />
     <Compile Include="Entity\LoginAccount.cs" />
-    <Compile Include="StrategiesCustomized\Customer\SpotGridBuyStrategy.cs" />
     <Compile Include="StrategiesBuiltin\SpotMakerBuyStrategy.cs" />
     <Compile Include="StrategiesBuiltin\SpotMakerSellStrategy.cs" />
     <Compile Include="StrategiesBuiltin\SpotWatchStrategy.cs" />
-    <Compile Include="StrategiesCustomized\Customer\SpotGridSellStrategy.cs" />
     <Compile Include="Entity\ApiInfo.cs" />
     <Compile Include="Entity\Platform.cs" />
     <Compile Include="Control\OrderView.cs">
