@@ -3,6 +3,7 @@ using CoinTrader.OKXCore.Entity;
 using CoinTrader.OKXCore.Enum;
 using System;
 using CoinTrader.Strategies;
+using System.Collections.Generic;
 
 namespace CoinTrader.Forms.Strategies
 {
@@ -38,6 +39,7 @@ namespace CoinTrader.Forms.Strategies
         [StrategyParameter(Name = "下停止价格", Min = 0)]
         public decimal DownStop{   get; set; }
 
+        List<long> orderIdsForCancel = new List<long>();
         protected override void OnTick()
         {
             this.Executing = false;
@@ -54,6 +56,7 @@ namespace CoinTrader.Forms.Strategies
 
             #region 重新同步订单单数据
             bool isFindOrder = false;
+            orderIdsForCancel.Clear();
             EachBuyOrder((order) =>
             {
                 if (myOrderId > 0 && myOrderId == order.PublicId)
@@ -63,9 +66,14 @@ namespace CoinTrader.Forms.Strategies
                 else
                 {
                     //撤销不明订单， 可能是手动挂单， 也可能是上次运行后退出程序后留下的订单
-                    CancelOrder(order.PublicId, "撤销不同步买单");
+                    orderIdsForCancel.Add(order.PublicId);
                 }
             });
+
+            foreach(var id in orderIdsForCancel)
+            {
+                CancelOrder(id, "撤销不同步买单");
+            }
 
             if (myOrderId > 0 && !isFindOrder) //在订单列表里没找到，或者订单可能已经被吃掉
                 myOrderId = 0;

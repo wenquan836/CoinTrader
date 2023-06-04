@@ -1,13 +1,6 @@
-﻿using CoinTrader.OKXCore;
-using CoinTrader.OKXCore.Entity;
+﻿using CoinTrader.OKXCore.Entity;
 using CoinTrader.OKXCore.Enum;
-using CoinTrader.OKXCore.Manager;
-using CoinTrader.OKXCore.Monitor;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CoinTrader.OKXCore.Manager; 
 
 namespace CoinTrader.Strategies
 {
@@ -20,15 +13,18 @@ namespace CoinTrader.Strategies
 
         protected string Currency { get; set; }
  
-        public override void Init(string instId)
+        public override bool Init(string instId)
         {
-            base.Init(instId);
+            Currency = instId;
+            if (!base.Init(instId)) return false;
             wallet = new Wallet(Currency);
+
+            return true;
         }
 
 
         /// <summary>
-        /// 资金划转
+        /// 资金划转,目前只支持交易账户、资金账户划转
         /// </summary>
         /// <param name="from"></param>
         /// <param name="to"></param>

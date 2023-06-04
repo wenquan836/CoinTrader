@@ -95,6 +95,20 @@ namespace CoinTrader.Forms
             parentMenu.DropDownItems.Add(stopAllItem);
             stopAllItem.Click += closeAllCallback;
 
+            /*
+            var emulationItem = new ToolStripMenuItem("复盘测试");
+            parentMenu.DropDownItems.Add(emulationItem);
+            foreach (var group in stategyGroups)
+            {
+                var subItem = new ToolStripMenuItem(group.name);
+                subItem.Tag = group;
+                subItem.Click += OnClickEmulationMenuItem;
+                
+                emulationItem.DropDownItems.Add(subItem);
+            }
+
+            */
+
             parentMenu.DropDownItems.Add(new ToolStripSeparator());
 
             var currencies = Config.Instance.PlatformConfig.Currencies;
@@ -122,6 +136,15 @@ namespace CoinTrader.Forms
             }
 
             #endregion
+        }
+
+        private void OnClickEmulationMenuItem(object sender, EventArgs args)
+        {
+            var menuItem = sender as ToolStripMenuItem;
+            var group = menuItem.Tag as StrategyGroup;
+            var window = new WinEmulatorGuid();
+            window.SetStrategyGroup(group);
+            window.Show();
         }
 
         private IEnumerator<IYieldInstruction> RunAllSwap(StrategyGroup group)
@@ -262,7 +285,7 @@ namespace CoinTrader.Forms
             for (int i = 0; i < this.fundsStrategies.Count; i++)
             {
                 var view = pnlBehavior.Controls[i] as StrategyView;
-                view.SetStrategy(Config.Instance.UsdCoin, this.fundsStrategies[i]);
+                view.SetStrategy(this.fundsStrategies[i]);
                 view.Visible = true;
             }
         }
@@ -402,6 +425,7 @@ namespace CoinTrader.Forms
             var usdx = Config.Instance.UsdCoin;
             USDXWallet.CreateInstance(usdx);
 
+            //加载资金管理策略
             var strategyGroup = StrategyManager.Instance.GetStrategyGroups(StrategyType.Funds);
 
             string err;

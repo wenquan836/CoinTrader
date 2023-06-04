@@ -33,6 +33,10 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.swapInfoView1 = new CoinTrader.Forms.Control.SwapInfoView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblMargin = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblTotalProfit = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.instId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.posSide = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -47,10 +51,6 @@
             this.cTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.mode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.interest = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblTotalProfit = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lblMargin = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -94,6 +94,42 @@
             this.groupBox2.Size = new System.Drawing.Size(1688, 167);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
+            // 
+            // lblMargin
+            // 
+            this.lblMargin.AutoSize = true;
+            this.lblMargin.Location = new System.Drawing.Point(153, 106);
+            this.lblMargin.Name = "lblMargin";
+            this.lblMargin.Size = new System.Drawing.Size(21, 21);
+            this.lblMargin.TabIndex = 1;
+            this.lblMargin.Text = "0";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(51, 106);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(94, 21);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "总保证金";
+            // 
+            // lblTotalProfit
+            // 
+            this.lblTotalProfit.AutoSize = true;
+            this.lblTotalProfit.Location = new System.Drawing.Point(153, 55);
+            this.lblTotalProfit.Name = "lblTotalProfit";
+            this.lblTotalProfit.Size = new System.Drawing.Size(21, 21);
+            this.lblTotalProfit.TabIndex = 1;
+            this.lblTotalProfit.Text = "0";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(72, 55);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 21);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "总盈利";
             // 
             // listView1
             // 
@@ -189,42 +225,6 @@
             this.interest.Text = "利息";
             this.interest.Width = 159;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(72, 55);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 21);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "总盈利";
-            // 
-            // lblTotalProfit
-            // 
-            this.lblTotalProfit.AutoSize = true;
-            this.lblTotalProfit.Location = new System.Drawing.Point(153, 55);
-            this.lblTotalProfit.Name = "lblTotalProfit";
-            this.lblTotalProfit.Size = new System.Drawing.Size(21, 21);
-            this.lblTotalProfit.TabIndex = 1;
-            this.lblTotalProfit.Text = "0";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(51, 106);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 21);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "总保证金";
-            // 
-            // lblMargin
-            // 
-            this.lblMargin.AutoSize = true;
-            this.lblMargin.Location = new System.Drawing.Point(153, 106);
-            this.lblMargin.Name = "lblMargin";
-            this.lblMargin.Size = new System.Drawing.Size(21, 21);
-            this.lblMargin.TabIndex = 1;
-            this.lblMargin.Text = "0";
-            // 
             // WinPosition
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
@@ -234,6 +234,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "WinPosition";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "合约持仓管理";
             this.Load += new System.EventHandler(this.WinPosition_Load);
             this.groupBox1.ResumeLayout(false);

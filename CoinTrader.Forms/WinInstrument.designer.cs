@@ -106,6 +106,7 @@
             this.ClientSize = new System.Drawing.Size(1747, 630);
             this.Controls.Add(this.listView1);
             this.Name = "WinInstrument";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "合约查询";
             this.Load += new System.EventHandler(this.WinInstrument_Load);
             this.ResumeLayout(false);

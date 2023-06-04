@@ -11,9 +11,6 @@ namespace CoinTrader.Forms
     class WindowManager
     {
         private List<Form> Windows = new List<Form>();
-
-
-
         public T OpenWindow<T>() where T : Form, new()
         {
             var win = new T();
@@ -39,7 +36,6 @@ namespace CoinTrader.Forms
 
             if (this.Windows.Count == 0)
             {
-                // this.Root.Close();
                 Logger.Instance.Close();
                 Application.Exit();
             }

@@ -19,7 +19,14 @@ namespace CoinTrader.OKXCore.Entity
 
         public Dictionary<string,InstrumentSpot> GetAllInstrument()
         {
-            return this.list;
+            return list;
+        }
+
+        public List<InstrumentBase> GetInstrumentList()
+        {
+            var baseList = new List<InstrumentBase>();
+            baseList.AddRange(list.Values);
+            return baseList;
         }
 
         public InstrumentSpot GetInstrument(string instId)

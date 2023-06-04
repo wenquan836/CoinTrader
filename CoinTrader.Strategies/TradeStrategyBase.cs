@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using CoinTrader.Common;
 using System.Threading;
+using CoinTrader.Strategies.Runtime;
 
 namespace CoinTrader.Strategies
 {
@@ -19,23 +20,47 @@ namespace CoinTrader.Strategies
     /// </summary>
     public abstract class TradeStrategyBase : StrategyBase
     {
-        protected MarketDataProvider dataProvider;
-        protected InstrumentBase  instrumentBase;
+         protected InstrumentBase  instrumentBase;
+        protected ITradeStrategyRuntime runtime = null;
+        public ITradeStrategyRuntime Runtime { get { return runtime; } }
+
 
         private volatile bool disposed = false;
         private volatile bool innerExecuting = false;
 
+        protected virtual StrategyType StrategyType => StrategyType.Spot;
+
+
+        /// <summary>
+        /// 最新的盘口卖盘报价
+        /// </summary>
+        protected decimal Ask { get; set; }
+
+        /// <summary>
+        /// 最新的盘口买盘报价
+        /// </summary>
+        protected decimal Bid { get; set; }
+
         /// <summary>
         /// 初始化
         /// </summary>
-        public override void Init(string instId)
+        public override bool Init(string instId)
         {
-            base.Init(instId);            
+            if (!base.Init(instId)) return false;
+
+            runtime = StrategyRuntimeManager.Instance.GetRuntime(instId,IsEmulationMode);
+
+            if (runtime == null)
+                return false;
+
             instrumentBase = InstrumentManager.GetInstrument(this.InstId);
             Debug.Assert(instrumentBase != null);
-            dataProvider = DataProviderManager.Instance.GetProvider(this.InstId);
-            dataProvider.OnTick += this.OnTickInner;
+             runtime.OnTick += this.OnTickInner;
+
+            return true;
         }
+
+ 
 
         /// <summary>
         /// 获取订单
@@ -44,7 +69,7 @@ namespace CoinTrader.Strategies
         /// <returns></returns>
         protected OrderBase GetOrder(long id)
         {
-           return TradeOrderManager.Instance.GetOrder(id, InstId);
+           return runtime.GetOrder(id);
         }
 
         /// <summary>
@@ -56,7 +81,20 @@ namespace CoinTrader.Strategies
         /// <param name="cancelOrderWhenFailed">如果修改失败是否撤单</param>
         protected bool ModifyOrder(long id, decimal amount, decimal newPrice, bool cancelOrderWhenFailed)
         {
-            return TradeOrderManager.Instance.ModifyOrder(id, InstId, amount, newPrice, cancelOrderWhenFailed);
+           return runtime.ModifyOrder(id, amount, newPrice, cancelOrderWhenFailed);
+        }
+
+        /// <summary>
+        /// 挂单
+        /// </summary>
+        /// <param name="side">卖出还是买入</param>
+        /// <param name="amount">数量</param>
+        /// <param name="price">价格</param>
+        /// <param name="postOnly">是否是限价模式，如何是限价模式则，高宇盘口价买入或低于盘口价卖出则失败</param>
+        /// <returns>非0，则返回订单ID， 返回0则失败</returns>
+        protected long SendOrder(OrderSide side, decimal amount, decimal price, bool postOnly)
+        {
+            return runtime.SendOrder(side, amount, price, postOnly);
         }
 
         /// <summary>
@@ -69,11 +107,20 @@ namespace CoinTrader.Strategies
         /// <param name="bid"></param>
         private void OnTickInner(decimal ask, decimal bid)
         {
+            Ask = ask;
+            Bid = bid;
             if (disposed) return;
             if (!this.Enable) return;
             if (innerExecuting) return;
 
             innerExecuting = true;
+
+            if (runtime.IsEmulator)
+            {
+                OnTick();
+                innerExecuting = false;
+                return;
+            }
 
             var task = Task.Factory.StartNew(() =>
             {
@@ -82,7 +129,7 @@ namespace CoinTrader.Strategies
             , CancellationToken.None, TaskCreationOptions.PreferFairness, TaskScheduler.Default);
             task.ContinueWith(t =>
             {
-                if (t.IsFaulted)
+                if (t.IsFaulted)//策略执行出现异常
                 {
                     if (t.Exception != null)
                     {
@@ -90,44 +137,47 @@ namespace CoinTrader.Strategies
                     }
                 }
 
-                if (disposed && dataProvider != null)
+                if (disposed && runtime != null)
                 {
-                    DataProviderManager.Instance.ReleaseProvider(dataProvider);
-                    dataProvider = null;
+                    StrategyRuntimeManager.Instance.ReleaseRuntime(runtime);
+                    runtime = null;
                 }
 
                 innerExecuting = false;
             });
         }
 
+        protected override void Wait(int milliseconds)
+        {
+            if (runtime.IsEmulator) return;
+
+            base.Wait(milliseconds);
+        }
+
         /// <summary>
         /// 释放
         /// </summary>
         public override void Dispose()
-        {
-            if (dataProvider != null)
+        {         
+            disposed = true;
+            if(runtime != null)
             {
-                dataProvider.OnTick -= this.OnTickInner;
-                disposed = true;
+                runtime.OnTick -= this.OnTickInner;
+       
                 if (!innerExecuting)
                 {
-                    DataProviderManager.Instance.ReleaseProvider(dataProvider);
-                    dataProvider = null;
+                    StrategyRuntimeManager.Instance.ReleaseRuntime(runtime);
+                    runtime = null;
                 }
             }
+
             base.Dispose();
         }
 
         /// <summary>
         /// 数据是否正常
         /// </summary>
-        protected bool Effective
-        {
-            get
-            {
-                return this.dataProvider.Effective && MonitorSchedule.Default.AllIsEffective();
-            }
-        }
+        protected bool Effective=>runtime.Effective;
 
         /// <summary>
         /// 收到报价时调用， 主要交易逻辑均有这个函数驱动
@@ -136,38 +186,30 @@ namespace CoinTrader.Strategies
         /// <param name="bid"></param>
         protected abstract void OnTick();
 
-        /// <summary>
-        /// 最新的盘口卖盘报价
-        /// </summary>
-        protected decimal Ask => dataProvider.Ask;
 
-        /// <summary>
-        /// 最新的盘口买盘报价
-        /// </summary>
-        protected decimal Bid => dataProvider.Bid;
 
         /// <summary>
         /// 可用的计价货币数量
         /// </summary>
-        protected decimal QuoteAvailable
-        {
-            get
-            {
-                return AssetsManager.Instance.GetBalance(BalanceType.Trading, BalanceAmountType.Available, instrumentBase.QuoteCcy);
-            }
-        }
+        protected decimal QuoteAvailable=>runtime.QuoteBalance.Avalible;
 
         /// <summary>
         /// 买入,以盘口价直接买入
         /// </summary>
         /// <param name="amount">数量</param>
-        protected  abstract void Buy(decimal amount);
+        protected  void Buy(decimal amount)
+        {
+            runtime.Buy(amount);
+        }
 
         /// <summary>
         /// 卖出,直接吃单卖出
         /// </summary>
         /// <param name="amount">数量</param>
-        protected abstract void Sell(decimal amount);
+        protected  void Sell(decimal amount)
+        {
+            runtime.Sell(amount);
+        }
 
         /// <summary>
         /// 取消订单
@@ -175,9 +217,8 @@ namespace CoinTrader.Strategies
         /// <param name="id"></param>
         protected void CancelOrder(long id)
         {
-           TradeOrderManager.Instance.CancelOrder(this.InstId, id);
+            runtime.CancelOrder(id);
         }
-
 
         /// <summary>
         /// 批量撤销订单
@@ -185,11 +226,7 @@ namespace CoinTrader.Strategies
         /// <param name="ids"></param>
         protected void CancelOrders(IEnumerable<long> ids)
         {
-            if (ids == null) return;
-            foreach(var id in ids)
-            {
-                TradeOrderManager.Instance.CancelOrder(this.InstId, id);
-            }
+            runtime.CancelOrders(ids);
         }
 
         /// <summary>
@@ -210,36 +247,9 @@ namespace CoinTrader.Strategies
             CancelOrderBySide(OrderSide.Sell,true);
         }
 
-
         private void CancelOrderBySide(OrderSide side,bool async)
         {
-            var ids = new List<long>();
-
-            switch (side)
-            {
-                case OrderSide.Buy:
-                    EachBuyOrder((order) =>
-                   {
-                       ids.Add(order.PublicId);
-                   });
-                    break;
-                case OrderSide.Sell:
-                    EachSellOrder((order) =>
-                   {
-                       ids.Add(order.PublicId);
-                   });
-                    break;
-            }
-
-            if (async)
-            {
-                TradeOrderManager.Instance.BatchCancelOrderAsync(this.InstId, ids);
-            }
-            else
-            {
-                TradeOrderManager.Instance.BatchCancelOrder(this.InstId, ids);
-
-            }
+            runtime.CancelOrderBySide(side, async);
         }
 
         /// <summary>
@@ -280,13 +290,7 @@ namespace CoinTrader.Strategies
         /// <param name="orderCallback"></param>
         protected void EachSellOrder(Action<OrderBase> orderCallback)
         {
-            TradeOrderManager.Instance.EachSellOrder((order) =>
-            {
-                if (string.Compare(this.InstId, order.InstId, true) == 0)
-                {
-                    orderCallback(order);
-                }
-            });
+           runtime.EachSellOrder(orderCallback);
         }
 
         /// <summary>
@@ -295,13 +299,7 @@ namespace CoinTrader.Strategies
         /// <param name="orderCallback"></param>
         protected void EachBuyOrder(Action<OrderBase> orderCallback)
         {
-            TradeOrderManager.Instance.EachBuyOrder((order) =>
-            {
-                if (string.Compare(this.InstId, order.InstId, true) == 0)
-                {
-                    orderCallback(order);
-                }
-            });
+            runtime.EachBuyOrder(orderCallback);
         }
 
         /// <summary>
@@ -310,10 +308,7 @@ namespace CoinTrader.Strategies
         /// <param name="granularity">粒度</param>
         protected void LoadCandle(CandleGranularity granularity)
         {
-            if (this.dataProvider != null)
-            {
-                this.dataProvider.LoadCandle(granularity);
-            }
+            runtime?.LoadCandle(granularity);
         }
 
         /// <summary>
@@ -322,10 +317,7 @@ namespace CoinTrader.Strategies
         /// <param name="granularity">粒度</param>
         protected void UnloadCandle(CandleGranularity granularity)
         {
-            if (this.dataProvider != null)
-            {
-                this.dataProvider.UnloadCandle(granularity);
-            }
+            runtime?.UnloadCandle(granularity);
         }
 
         /// <summary>
@@ -336,11 +328,7 @@ namespace CoinTrader.Strategies
         /// 
         protected void EachCandle(CandleGranularity granularity, Func<Candle, bool> callback)
         {
-            var candleProvider = dataProvider.GetCandleProvider(granularity);
-            if (candleProvider != null)
-            {
-                candleProvider.EachCandle(callback);
-            }
+            runtime.EachCandle(granularity, callback);
         }
 
         /// <summary>
@@ -350,12 +338,10 @@ namespace CoinTrader.Strategies
         /// <returns></returns>
         protected ICandleProvider GetCandleProvider(CandleGranularity granularity)
         {
-            return dataProvider.GetCandleProvider(granularity);
+            var cm = runtime.GetCandleProvider(granularity);
+            if (cm == null)
+                runtime.LoadCandle(granularity);
+            return runtime.GetCandleProvider(granularity);
         }
-
-        /// <summary>
-        /// 当前用到的数据监视器列表
-        /// </summary>
-        public List<MonitorBase> AllMonitor => dataProvider.GetAllMonitor();
     }
 }

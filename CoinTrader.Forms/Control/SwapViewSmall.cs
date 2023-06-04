@@ -65,7 +65,7 @@ namespace CoinTrader.Forms.Control
             foreach (var strategy in list)
             {
                 var view = new StrategyView();
-                view.SetStrategy(this.InstId, strategy);
+                view.SetStrategy(strategy);
                 this.pnlBehavior.Controls.Add(view);
             }
         }

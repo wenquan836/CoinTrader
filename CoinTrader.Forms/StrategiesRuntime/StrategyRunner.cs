@@ -11,10 +11,9 @@ using System.Threading.Tasks;
 
 namespace CoinTrader.Forms.StrategiesRuntime
 {
-    
     internal class StrategyRunner
     {
-       private readonly Dictionary<string,List<StrategyBase>> runningStrategy = new Dictionary<string, List<StrategyBase>>();
+        private readonly Dictionary<string,List<StrategyBase>> runningStrategy = new Dictionary<string, List<StrategyBase>>();
 
         private StrategyRunner()
         {
@@ -24,9 +23,9 @@ namespace CoinTrader.Forms.StrategiesRuntime
         /// <summary>
         /// 运行策略
         /// </summary>
-        /// <param name="instId"></param>
-        /// <param name="group"></param>
-        /// <param name="error"></param>
+        /// <param name="instId">交易品种</param>
+        /// <param name="group">策略组</param>
+        /// <param name="error">错误信息</param>
         /// <returns></returns>
         public bool RunStrategy(string instId,StrategyGroup group, bool runImmediately, out string  error)
         {

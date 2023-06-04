@@ -1,13 +1,9 @@
-﻿using CoinTrader.Common;
-using CoinTrader.Common.Classes;
+﻿
+using System;
+using CoinTrader.Strategies;
+using CoinTrader.Common;
 using CoinTrader.OKXCore.Entity;
 using CoinTrader.OKXCore.Enum;
-using CoinTrader.OKXCore.Manager;
-using System;
-using System.Collections.Generic;
-using CoinTrader.Strategies;
-using System.Diagnostics;
-using System.ComponentModel.DataAnnotations;
 
 namespace CoinTrader.Forms.Strategies
 {
@@ -140,6 +136,9 @@ namespace CoinTrader.Forms.Strategies
             }
         }
 
+        /// <summary>
+        /// 策略停止
+        /// </summary>
         public override void Dispose()
         {
             this.CancelAllSellOrdersAsync();

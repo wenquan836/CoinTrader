@@ -72,7 +72,7 @@ namespace CoinTrader.Forms.Control
             var result = MessageBox.Show("确定全部平仓?", "平仓", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             if (result == DialogResult.OK)
             {
-                PositionManager.Instance.RemovePosition(this.Id);
+                PositionManager.Instance.ClosePosition(this.Id);
             }
         }
 

@@ -15,6 +15,12 @@ namespace CoinTrader.Strategies
         private Timer timer = null;
 
         /// <summary>
+        /// 是否复盘模式
+        /// </summary>
+        public bool IsEmulationMode { get; set; }
+
+
+        /// <summary>
         /// 是否开启，如果没有开启， 逻辑将不执行
         /// </summary>
         public virtual bool Enable { get; set; }
@@ -60,7 +66,7 @@ namespace CoinTrader.Strategies
         /// 这里不适合做长时间等待，尽量控制5秒钟内的等待。 长时间等待请用CountDown
         /// </summary>
         /// <param name="milliseconds">毫秒数</param>
-        protected void Wait(int milliseconds)
+        protected virtual void Wait(int milliseconds)
         {
             Thread.Sleep(milliseconds);
         }
@@ -87,7 +93,7 @@ namespace CoinTrader.Strategies
         /// <returns></returns>
         public string SaveConfig()
         {
-            string err   = StrategyConfig.SaveStrategyConfig(this.InstId, this);
+             string err   = StrategyConfig.SaveStrategyConfig(this.InstId, this);
             this.HasConfig = HasConfig || string.IsNullOrEmpty(err);
             return err;
         }
@@ -97,7 +103,7 @@ namespace CoinTrader.Strategies
         /// </summary>
         public void LoadConfig()
         {
-           this.HasConfig = StrategyConfig.LoadStrategyConfig(this.InstId, this);
+             this.HasConfig = StrategyConfig.LoadStrategyConfig(this.InstId, this);
         }
         #endregion
 
@@ -127,11 +133,17 @@ namespace CoinTrader.Strategies
         /// <summary>
         /// 初始化，加载配置文件
         /// </summary>
-        public virtual void Init(string instId)
+        public virtual bool Init(string instId)
         {
             this.InstId = instId;
             this.LoadConfig();
-            timer = new Timer(InnerOnTimer, null, TimerInterval, TimerInterval);
+
+            if (!IsEmulationMode)
+            {
+                timer = new Timer(InnerOnTimer, null, TimerInterval, TimerInterval);
+            }
+
+            return true;
         }
 
         /// <summary>

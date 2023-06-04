@@ -12,7 +12,7 @@ namespace CoinTrader.OKXCore.Manager
         public int ReferenceTimes { get; set; } 
     }
 
-    public class DataProviderManager
+    public sealed class DataProviderManager
     {
         private readonly Dictionary<string, DataProviderItem> providers = new Dictionary<string, DataProviderItem>();
 
@@ -69,15 +69,21 @@ namespace CoinTrader.OKXCore.Manager
             }
         }
 
+        private static object lockObj = new object();
         private static DataProviderManager _instance;
 
         public static DataProviderManager Instance
         {
             get
             {
+                
                 if(_instance == null)
                 {
-                    _instance = new DataProviderManager();
+                    lock (lockObj)
+                    {
+                        if(_instance == null)
+                            _instance = new DataProviderManager();
+                    }
                 }
 
                 return _instance;

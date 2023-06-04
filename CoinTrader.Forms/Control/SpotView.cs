@@ -66,7 +66,6 @@ namespace CoinTrader.Forms.Control
 
             RefreshStrategies();
 
-            ShowMonitorList();
             this.timer1.Enabled = true;
             this.timer1.Start();
 
@@ -80,7 +79,7 @@ namespace CoinTrader.Forms.Control
             foreach (var strategy in list)
             {
                 var view = new StrategyView();
-                view.SetStrategy(this.InstId, strategy);
+                view.SetStrategy(strategy);
                 this.pnlBehavior.Controls.Add(view);
             }
         }
@@ -139,7 +138,7 @@ namespace CoinTrader.Forms.Control
             return list;
         }
 
-        private void ShowMonitorList()
+        private void ShowMonitorList(IList<MonitorBase> monitors)
         {
             foreach (System.Windows.Forms.Control c in this.pnlMonitor.Controls)
             {
@@ -147,8 +146,11 @@ namespace CoinTrader.Forms.Control
                 (c as MonitorView).monitor = null;
             }
 
+            if (monitors == null)
+                return;
+
             int mindex = 0;
-            foreach (var m in GetAllMonitor())
+            foreach (var m in monitors)
             {
                 MonitorView mv;
                 if (this.pnlMonitor.Controls.Count > mindex)
@@ -180,17 +182,19 @@ namespace CoinTrader.Forms.Control
             this.UpdateAmount();
         }
 
-
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
+            bool showDepth = false;
+            bool showMonitors = false;
+            
             if (this.tabMain.SelectedTab == this.tabDepth)
-            {
-                this.depthView1.SetProvider(this.dataProvider);
-            }
-            else
-            {
-                this.depthView1.SetProvider(null);
-            }
+                showDepth = true;
+
+            if (this.tabMain.SelectedTab == this.tabData)
+                showMonitors = true;
+
+            this.depthView1.SetProvider(showDepth ? this.dataProvider : null);
+            this.ShowMonitorList(showMonitors?GetAllMonitor(): null);
         }
 
         /// <summary>

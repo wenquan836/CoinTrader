@@ -76,7 +76,7 @@ namespace CoinTrader.Forms
             {
                 if (!MainCoins.Contains(inst.Value.InstrumentId))
                 {
-                    if (string.Compare(Config.Instance.UsdCoin, inst.Value.QuoteCurrency, true) == 0)
+                    if (string.Compare(Config.Instance.UsdCoin, inst.Value.QuoteCcy, true) == 0)
                     {
                         cmbCoin2.Items.Add(inst.Value.InstrumentId);
                     }

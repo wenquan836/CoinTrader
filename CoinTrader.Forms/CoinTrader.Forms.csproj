@@ -281,7 +281,7 @@
     <Compile Include="StrategiesRuntime\StrategyManager.cs" />
     <Compile Include="StrategiesRuntime\StrategyRunner.cs" />
     <Compile Include="Wallet\USDXWallet.cs" />
-    <Content Include="StrategiesCustomized\CustomSwapStrategy.csx">
+    <Content Include="StrategiesCustomized\SampleSwapStrategy.csx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Compile Include="StrategiesCustomized\Customer\Customer1BehaviorV2.cs">
@@ -343,6 +343,18 @@
     </Compile>
     <Compile Include="WinCTCConfig.Designer.cs">
       <DependentUpon>WinCTCConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinEmulator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinEmulator.Designer.cs">
+      <DependentUpon>WinEmulator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinEmulatorGuid.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinEmulatorGuid.Designer.cs">
+      <DependentUpon>WinEmulatorGuid.cs</DependentUpon>
     </Compile>
     <Compile Include="WinSpotStat.cs">
       <SubType>Form</SubType>
@@ -419,12 +431,6 @@
     <Compile Include="WinTimeLine.Designer.cs">
       <DependentUpon>WinTimeLine.cs</DependentUpon>
     </Compile>
-    <Compile Include="WinRoot.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="WinRoot.Designer.cs">
-      <DependentUpon>WinRoot.cs</DependentUpon>
-    </Compile>
     <Compile Include="WinStrategyParam.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -485,6 +491,12 @@
     <EmbeddedResource Include="WinCTCConfig.resx">
       <DependentUpon>WinCTCConfig.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WinEmulator.resx">
+      <DependentUpon>WinEmulator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinEmulatorGuid.resx">
+      <DependentUpon>WinEmulatorGuid.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WinSpotStat.resx">
       <DependentUpon>WinSpotStat.cs</DependentUpon>
     </EmbeddedResource>
@@ -533,9 +545,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WinTimeLine.resx">
       <DependentUpon>WinTimeLine.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WinRoot.resx">
-      <DependentUpon>WinRoot.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinStrategyParam.resx">
       <DependentUpon>WinStrategyParam.cs</DependentUpon>

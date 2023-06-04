@@ -29,7 +29,7 @@ namespace CoinTrader.Strategies
         /// <param name="instId"></param>
         /// <param name="strategy"></param>
         /// <returns></returns>
-        public static string SaveStrategyConfig(string instId, object strategy)
+        public static string SaveStrategyConfig(string instId, StrategyBase strategy)
         {
 
             var type = strategy.GetType();
@@ -96,10 +96,16 @@ namespace CoinTrader.Strategies
             return dir;
         }
 
-        private static string GetConfigPath(string instId, object strategy)
+        private static string GetConfigPath(string instId, StrategyBase strategy)
         {
             var type = strategy.GetType();
+            bool isEmulationMode =  strategy .IsEmulationMode;
             var dir = GetConfigDir(instId);
+
+            if(isEmulationMode)
+            {
+                dir = Path.Combine(dir, "_emulation_");
+            }
 
             if(!Directory.Exists(dir))
             {
@@ -115,15 +121,22 @@ namespace CoinTrader.Strategies
         /// <param name="instId"></param>
         /// <param name="strategy"></param>
         /// <returns></returns>
-        public static bool LoadStrategyConfig(string instId, object strategy)
+        public static bool LoadStrategyConfig(string instId, StrategyBase strategy)
         {
             string configPath = GetConfigPath(instId, strategy);
 
             if(File.Exists(configPath))
             {
                 string text = File.ReadAllText(configPath);
-
-                JObject json = JObject.Parse(text);
+                JObject json = null;
+                try
+                {
+                    json = JObject.Parse(text);
+                }
+                catch
+                {
+                    return false;
+                }
 
                 var type = strategy.GetType();
 

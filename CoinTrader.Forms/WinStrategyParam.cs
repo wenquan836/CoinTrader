@@ -29,7 +29,7 @@ namespace CoinTrader.Forms
         }
 
 
-        public void SetStrategy(string currency, StrategyBase strategy)
+        public void SetStrategy(StrategyBase strategy)
         {
             this.strategy = strategy;
             var type = strategy.GetType();
@@ -38,7 +38,7 @@ namespace CoinTrader.Forms
             if(attr.Length > 0)
             {
                 var behaviorAttr = attr[0] as StrategyAttribute;
-                this.Text = currency.ToUpper() + behaviorAttr.Name + "参数设置";
+                this.Text = strategy.InstId.ToUpper() + behaviorAttr.Name + "参数设置";
             }
 
             PropertyInfo[] properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);

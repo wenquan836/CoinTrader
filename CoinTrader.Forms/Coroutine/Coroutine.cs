@@ -1,4 +1,5 @@
 ﻿using CommonTools.Coroutines;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -6,6 +7,18 @@ namespace CoinTrader.Forms
 {
     internal static class Coroutine
     {
+
+        class TimeProvider:ITimeProvider
+        {
+            DateTime startTime = DateTime.Now;
+            public float GetCurrentTime()
+            {
+                var now = DateTime.Now;
+
+                return (float)( (now - startTime).TotalMilliseconds * 0.001f);
+            }
+        }
+
         static  Timer mainThreadTimer = null;
         private class CoroutineExecutor : ThreadSafeCoroutinesExecutorBase
         {
@@ -32,6 +45,7 @@ namespace CoinTrader.Forms
             t.Interval = 33;
             t.Enabled = true;
             mainThreadTimer = t;
+            TimeProviders.DefaultTimeProvider = new TimeProvider();
         }
 
         private static void Timer_Tick(object sender, System.EventArgs e)

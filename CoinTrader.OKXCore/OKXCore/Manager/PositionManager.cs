@@ -69,6 +69,11 @@ namespace CoinTrader.OKXCore.Manager
             return hasPos;
         }
 
+        /// <summary>
+        /// 获取交易品种下的所有持仓
+        /// </summary>
+        /// <param name="instId"></param>
+        /// <returns></returns>
         public List<Position> GetPositions(string instId)
         {
             List< Position> positions = new List<Position>(1);
@@ -83,6 +88,12 @@ namespace CoinTrader.OKXCore.Manager
             return positions;
         }
 
+        /// <summary>
+        /// 根据持仓方向获取持仓数据
+        /// </summary>
+        /// <param name="instId"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public Position GetPosition(string instId,   PositionType type)
         {
             Position position = null;
@@ -272,7 +283,7 @@ namespace CoinTrader.OKXCore.Manager
         /// <param name="size">数量</param>
         /// <param name="odrType">交易模式</param>
         /// <param name="price">价格,如果是限价模式请填写价格</param>
-        public bool ClosePosition(long id, int size, string odrType, decimal price)
+        private bool ClosePosition(long id, int size, string odrType, decimal price)
         {
             Position pos = GetPosition(id);
             if (pos != null)
@@ -287,7 +298,11 @@ namespace CoinTrader.OKXCore.Manager
                     var result = api.ExecSync();
                     if(result.success)
                     {
-                        monitor.RemovePosition(id);
+                        if (pos.AvailPos <= size)//全平仓
+                            monitor.RemovePosition(id);
+                        else
+                            pos.AvailPos -= size;
+
                         return true;
                     }
                 }
@@ -327,7 +342,25 @@ namespace CoinTrader.OKXCore.Manager
             return size;
         }
 
+        /// <summary>
+        /// 合约张数转数量
+        /// </summary>
+        /// <param name="instId"></param>
+        /// <param name="sz">合约张数</param>
+        /// <returns></returns>
         public static decimal SizeToAmount(string instId,int sz)
+        {
+            return SizeToAmount(instId, 1.0m * sz);
+        }
+
+
+        /// <summary>
+        /// 合约张数转数量
+        /// </summary>
+        /// <param name="instId"></param>
+        /// <param name="sz">合约张数</param>
+        /// <returns></returns>
+        public static decimal SizeToAmount(string instId, decimal sz)
         {
             InstrumentSwap instrument = InstrumentManager.SwapInstrument.GetInstrument(instId);
             decimal amount = sz * instrument.CtVal;
@@ -387,7 +420,7 @@ namespace CoinTrader.OKXCore.Manager
             {
                 string strSide = side == PositionType.Short ? PositionSide.Short : PositionSide.Long;
                 var api = new SwapOpen(instId, strSide);
-                api.sz = "" + size; //转换为“张”四舍五入去除精度损失
+                api.sz = "" + size;
                 api.ordType = price > 0 ? OrderType.Limit : OrderType.Market;//市价直接吃入
                 api.px = price.ToString(instrument.PriceFormat);
                 api.tdMode = mode == SwapMarginMode.Cross ? MarginMode.Cross : MarginMode.Isolated;
@@ -429,21 +462,7 @@ namespace CoinTrader.OKXCore.Manager
 
             return this.CreatePosition(instId, side, size,mode, price);
         }
-    
-        /// <summary>
-        /// 全平仓
-        /// </summary>
-        /// <param name="id"></param>
-        public void RemovePosition(long id)
-        {
-            Position pos = PositionManager.Instance.GetPosition(id);
-            if (pos != null)
-            {
-                InstrumentSwap instrument = InstrumentManager.SwapInstrument.GetInstrument(pos.InstId);
-                this.ClosePosition(id, pos.Pos * instrument.CtVal, OrderType.Market, 0);
-            }
-        }
-
+ 
         private static PositionManager _instance;
         public static PositionManager Instance
         {

@@ -12,11 +12,18 @@ namespace CoinTrader.OKXCore.Entity
 
         private string quoteCcy = string.Empty;
         public InstrumentSwapVsUSD() { }
-
         public Dictionary<string, InstrumentSwap> GetAllInstrument()
         {
-            return this.list;
+            return list;
         }
+
+        public List<InstrumentBase> GetInstrumentList()
+        {
+            var baseList = new List<InstrumentBase>();
+            baseList.AddRange(list.Values);
+            return baseList;
+        }
+
 
         public InstrumentSwap GetInstrument(string instrument)
         {

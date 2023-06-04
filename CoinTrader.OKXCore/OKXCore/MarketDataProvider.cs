@@ -180,7 +180,11 @@ namespace  CoinTrader.OKXCore
         {
             this.Ask = ctcTickerMonitor.Ask;
             this.Bid = ctcTickerMonitor.Bid;
+            UpdatePrices();
+        }
 
+        private void UpdatePrices()
+        {
             lock (this.candleMonitorList)
             {
                 foreach (var m in this.candleMonitorList)
@@ -192,9 +196,9 @@ namespace  CoinTrader.OKXCore
             OnTick?.Invoke(Ask, Bid);
 
             //判断是否深度表处于空闲状态， 如果是则关闭深度表
-            if(this.AutoCloseDepthBook && this.isSubscribeDepth)
+            if (this.AutoCloseDepthBook && this.isSubscribeDepth)
             {
-                if((DateTime.Now - lastAccessDethBook).TotalMilliseconds > depthBookCloseTime)
+                if ((DateTime.Now - lastAccessDethBook).TotalMilliseconds > depthBookCloseTime)
                 {
                     this.ctcTickerMonitor.UnsubscribeDepth();
                     this.isSubscribeDepth = false;

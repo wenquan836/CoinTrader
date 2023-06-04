@@ -38,10 +38,9 @@ namespace CoinTrader.Forms
             string[] columns = { "posSide", "pos", "avgPx", "upl", "lever", "liqPx", "margin", "mgnRatio", "mmr", "cTime", "mode", "interest" };
 
 
-            mgr.EachPosition((Position pos) => {
-
+            mgr.EachPosition((Position pos) => 
+            { 
                 var color = pos.PosSide == PositionSide.Short ? colorSell : colorBuy;
-
 
                 ListViewItem listItem;
                 if (listView1.Items.Count > index)
@@ -82,7 +81,7 @@ namespace CoinTrader.Forms
                  pos.Lever.ToString(),
                  pos.LiqPx.ToString(inst.PriceFormat),
                  pos.Margin.ToString("0.00"),
-                pos.MgnMode == "isolated"?  pos.MgnRatio.ToString("P"):"-",
+                 pos.MgnMode == "isolated"?  pos.MgnRatio.ToString("P"):"-",
                  pos.MMR.ToString("0.00"),
                  DateUtil.UtcToLocalTime(pos.CTime).ToString("yyyy-MM-dd HH:mm:ss"),
                  pos.MarginModeName,

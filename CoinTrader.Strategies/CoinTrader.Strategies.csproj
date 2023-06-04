@@ -46,7 +46,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FundsStrategyBase.cs" />
+    <Compile Include="Runtime\ITradeStrategyRuntime.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Runtime\StrategyRuntimeManager.cs" />
+    <Compile Include="Runtime\SwapStrategyRuntime.cs" />
+    <Compile Include="Runtime\SpotStrategyRuntime.cs" />
+    <Compile Include="Runtime\StrategyEmulatorRuntime.cs" />
+    <Compile Include="StrategyType.cs" />
     <Compile Include="SwapStrategyBase.cs" />
     <Compile Include="SpotStrategyBase.cs" />
     <Compile Include="StrategyAttribute.cs" />

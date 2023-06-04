@@ -10,7 +10,6 @@ namespace CoinTrader.Forms.Control
     public partial class StrategyView : UserControl
     {
         private StrategyBase _strategy = null;
-        private string currency = "";
         public StrategyBase Strategy
         {
             get
@@ -55,9 +54,8 @@ namespace CoinTrader.Forms.Control
             this.chkEnable.Enabled = false;
         }
 
-        public void SetStrategy(string currency, StrategyBase strategy)
+        public void SetStrategy(StrategyBase strategy)
         {
-            this.currency = currency;
             this.Strategy = strategy;
         }
 
@@ -81,7 +79,7 @@ namespace CoinTrader.Forms.Control
         {
             WinStrategyParam win = new WinStrategyParam();
             win.Show();
-            win.SetStrategy(this.currency, this.Strategy);
+            win.SetStrategy(this.Strategy);
         }
     }
 }

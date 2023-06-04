@@ -65,7 +65,7 @@ namespace CoinTrader.Forms.Strategies
         protected override void OnTick()
         {
             this.Executing = false;
-            if (!Effective)
+            if (!Effective)//确保所有数据都正确获取到
                 return;
             
             if (!buyTriggered)

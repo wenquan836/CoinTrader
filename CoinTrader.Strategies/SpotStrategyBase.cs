@@ -15,9 +15,11 @@ namespace CoinTrader.Strategies
         protected Wallet wallet;
         protected InstrumentSpot instrument;
 
-        public override void Init(string instId)
+        protected override StrategyType StrategyType => StrategyType.Spot;
+
+        public override bool Init(string instId)
         {
-            base.Init(instId);
+           if(!  base.Init(instId)) return false;
 
             instrument = instrumentBase as InstrumentSpot;
 
@@ -27,118 +29,40 @@ namespace CoinTrader.Strategies
             }
 
             wallet = new Wallet(instrumentBase.BaseCcy);
+
+            return true;
         }
 
  
         /// <summary>
         /// 交易币种名称
         /// </summary>
-        protected string BaseCurrency => dataProvider.BaseCurrency;
+        protected string BaseCurrency => runtime.BaseCurrency;
 
         /// <summary>
         /// 计价币种名称
         /// </summary>
-        protected string QuoteCurrency => dataProvider.QuoteCurrency;
- 
+        protected string QuoteCurrency => runtime.QuoteCurrency;
+
         /// <summary>
         /// 交易账户可用额度
         /// </summary>
-        protected decimal AvailableInTrading => wallet.AvailableInTrading;
+        protected decimal AvailableInTrading => runtime.BaseBalance.Avalible;
 
         /// <summary>
         /// 交易账户冻结额度
         /// </summary>
-        protected decimal FrozenInTrading => wallet.FrozenInTrading;
+        protected decimal FrozenInTrading => runtime.BaseBalance.Frozen;
 
-        /// <summary>
-        /// 资金账户可用额度
-        /// </summary>
-        protected decimal AvailableInAccount => wallet.AvailableInAccount;
-
-        /// <summary>
-        /// 资金账户冻结额度
-        /// </summary>
-        protected decimal FrozenInAccount => wallet.FrozenInAccount;
 
         /// <summary>
         /// 最小可交易数量
         /// </summary>
-        protected decimal MinSize => instrument.MinSize;
+        protected decimal MinSize => runtime.MinSize;
 
         /// <summary>
         /// 最小价格精度
         /// </summary>
-        protected decimal TickSize=>instrument.TickSize;
-
-        /// <summary>
-        /// 从币币市场买入,以盘口价直接买入
-        /// </summary>
-        /// <param name="amount">数量</param>
-        protected override async void Buy(decimal amount)
-        {
-            string instId = InstId;
-            CreateOrder api;
-            amount = amount * this.Ask;//转为USDT数量
- 
-            if (QuoteAvailable >= amount)
-            {
-                api = new SpotBuyImmediately(instId, amount);
-                var result = await api.Exec();
-
-                if (result.code != 0)
-                {
-                    Logger.Instance.LogError("币币下单失败 " + result.message.ToString());
-                }
-                else
-                {
-                    //成功
-                }
-            }
-            else
-            {
-                Logger.Instance.LogInfo(instId + "币币买入失败,余额不足 " + amount + "/ " + QuoteAvailable);
-            }
-        }
-
-        /// <summary>
-        /// 币币市场抛出,直接吃单卖出
-        /// </summary>
-        /// <param name="amount">数量</param>
-        protected override async void Sell(decimal amount)
-        {
-            amount = Math.Min(amount, this.AvailableInTrading);
-
-            string instId = InstId;
-
-            if (amount > this.instrumentBase.MinSize)
-            {
-                CreateOrder api = new SpotSellImmediately(instId, amount);
-                //api = new SpotCreateOrder(instId, OrderSide.Sell);
-                //api.sz = amount.ToString();
-                //api.px = this.Bid.ToString();
-                var result = await api.Exec();
-            }
-        }
-
-        /// <summary>
-        /// 挂单
-        /// </summary>
-        /// <param name="side">卖出还是买入</param>
-        /// <param name="amount">数量</param>
-        /// <param name="price">价格</param>
-        /// <param name="postOnly">是否是限价模式，如何是限价模式则，高宇盘口价买入或低于盘口价卖出则失败</param>
-        /// <returns>非0，则返回订单ID， 返回0则失败</returns>
-        protected long SendOrder(OrderSide side, decimal amount, decimal price, bool postOnly)
-        {
-            var orderManager = TradeOrderManager.Instance;
-            var order = orderManager.PlaceOrder(InstId, amount, price, side, postOnly, true);
-           
-            if (order != null)
-            {
-                return order.PublicId;
-            }
-
-            return 0;
-        }
+        protected decimal TickSize=> runtime.TickSize;
     }
 }

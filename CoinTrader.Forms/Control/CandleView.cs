@@ -150,6 +150,10 @@ namespace CoinTrader.Forms.Control
         private void ExecuteJavascript(string code)
         {
             Action<string> invokeAction = async (js) => {
+
+                if (webView == null)
+                    return;
+
                 var frame = webView.GetBrowser().MainFrame;
 
                 if (frame == null)

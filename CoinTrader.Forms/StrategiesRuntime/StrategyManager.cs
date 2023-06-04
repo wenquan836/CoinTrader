@@ -18,25 +18,6 @@ namespace CoinTrader.Forms.Strategies
         public List<Type> strategies = new List<Type>();
     }
 
-    /// <summary>
-    /// 策略类型
-    /// </summary>
-    public enum StrategyType
-    {
-        /// <summary>
-        /// 资金管理策略
-        /// </summary>
-        Funds,
-        /// <summary>
-        /// 现货策略
-        /// </summary>
-        Spot,
-        /// <summary>
-        /// 合约策略
-        /// </summary>
-        Swap
-    }
-
     internal class StrategyManager
     {
         private Dictionary< string, StrategyGroup> spotGroups = new Dictionary<string, StrategyGroup>();

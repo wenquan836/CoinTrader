@@ -259,6 +259,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
             this.Name = "WinCross";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "交叉盘分析";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WinCross_FormClosing);
             this.Load += new System.EventHandler(this.WinCross_Load);

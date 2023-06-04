@@ -1,13 +1,17 @@
-﻿
-using CoinTrader.Common.Classes;
-using CoinTrader.OKXCore;
-using CoinTrader.OKXCore.Entity;
-using CoinTrader.OKXCore.Enum;
-using CoinTrader.OKXCore.Manager;
-using CoinTrader.OKXCore.Monitor;
+﻿/*
+ * 这是一个示例文件，
+ * 放在外置的StrategiesCustomized文件夹下
+ * 每次重启的时候就会动态加载StrategiesCustomized文件夹下的 .cs和.csx文件
+ * 
+*/
+
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using CoinTrader.Common.Classes;
+using CoinTrader.OKXCore.Entity;
+using CoinTrader.OKXCore.Enum;
 using CoinTrader.Common;
 using CoinTrader.Strategies;
 
@@ -22,12 +26,12 @@ namespace CoinTrader.Forms.Strategies.Customer
     }
 
     [Strategy(Name = "合约交易策略")]
-    internal class CustomSwapStrategy : SwapStrategyBase
+    internal class SampleSwapStrategy : SwapStrategyBase
     {
         [StrategyParameter(Name = "仓位大小(USD)", Min = 1, Max = 100000000, Intro = "按稳定币计价的仓位大小")]
         public decimal PositionSizeUsd { get; set; }
 
-        uint lever = 1;
+        private uint lever = 1;
         [StrategyParameter(Name = "杠杆倍数", Min = 1, Max = 150)]
         public uint Lever
         {
@@ -55,7 +59,6 @@ namespace CoinTrader.Forms.Strategies.Customer
         public float Range{ get;set;}
 
         [StrategyParameter(Name = "数量", Min = 1, Max = 200,Intro = "满足多少个符合涨跌幅的K线")]
-
         public int KLineCount{ get;set; }
 
         CandleGranularity _candle;
@@ -69,7 +72,6 @@ namespace CoinTrader.Forms.Strategies.Customer
                 {
                     UnloadCandle(this._candle);
                     _candle = value;
-                    LoadCandle(value);
                 }
             }
         }
@@ -122,12 +124,17 @@ namespace CoinTrader.Forms.Strategies.Customer
         private bool resetLever = true;
 
         /// <summary>
+        /// 触发移动止盈的最后最高（最低）价格记录
+        /// </summary>
+        private decimal lastTrigerPrice = 0;
+
+        /// <summary>
         /// 交易冷却（主要是等待同步数据)
         /// </summary>
         private float delay = 2.0f;
-        public CustomSwapStrategy()
+
+        public SampleSwapStrategy()
         {
-            this.OpenCandle = CandleGranularity.M15;
             this.KLinSample = 1;
             this.KLineCount = 1;
             this.StopLoss = 10;
@@ -138,9 +145,29 @@ namespace CoinTrader.Forms.Strategies.Customer
             this.PositionSizeUsd = 500;
             this.AppendLoss = 10;
             this.AppendTimes = 1;
+            this._candle = CandleGranularity.M15;
         }
 
-         protected override void  OnTick()
+        /// <summary>
+        /// 初始化函数， 传入instId
+        /// </summary>
+        /// <param name="instId">代表这个策略将在那个交易品种上运行</param>
+        /// <returns>成功返回true，失败返回false</returns>
+        public override bool Init(string instId)
+        {
+            //基类初始化成功
+            if (base.Init(instId))
+            {
+                 return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 每次收到服务器端报价的时候就会执行这个函数
+        /// </summary>
+        protected override void  OnTick()
         {
             this.Executing = false;
 
@@ -225,19 +252,22 @@ namespace CoinTrader.Forms.Strategies.Customer
         private void PlusAppendTimes(long posId)
         {
             string storageKey = GetStorageKey(posId);
-
             int times = LocalStorage.GetValue<int>(storageKey);
-
             times++;
-
             LocalStorage.SetValue(storageKey, times);
         }
 
+        /// <summary>
+        /// 计算仓位大小， 仓位是以主币种数量来定。 不是按张数
+        /// </summary>
+        /// <param name="ask"></param>
+        /// <param name="bid"></param>
+        /// <returns></returns>
         private decimal GetPostionSize(decimal ask, decimal bid)
         {
-            var balance = QuoteAvailable; //加杠杆后的总金额
-            var posAmount = Math.Min(balance, PositionSizeUsd);
-            var amount = posAmount / ((ask + bid) * 0.5M);// GetOpenPrice(Side, ask, bid) ; //计算出每次下单的大小
+            var balance = QuoteAvailable; //获取稳定币结余
+            var quoteAmount = Math.Min(balance, PositionSizeUsd);
+            var amount = quoteAmount / ((ask + bid) * 0.5M);//计算出每次下单的大小
             return amount;
         }
 
@@ -291,8 +321,6 @@ namespace CoinTrader.Forms.Strategies.Customer
         {
             return val * 0.01m;
         }
-
-        private decimal lastTrigerPrice = 0;//触发移动止盈的最后最高（最低）价格
 
         /// <summary>
         /// 判断是否可以平仓（止盈或止损）
@@ -377,7 +405,7 @@ namespace CoinTrader.Forms.Strategies.Customer
         private bool CheckKLine(out PositionType side)
         {
             side = PositionType.Long;
-            var candleProvider = GetCandleProvider(_candle);
+            var candleProvider = GetCandleProvider(_candle);//获取K线
 
             if(KLinSample > 0 && candleProvider != null)//k线是否已经加载成功
             {
@@ -432,7 +460,6 @@ namespace CoinTrader.Forms.Strategies.Customer
 
             return false;
         }
-
 
         /// <summary>
         /// 是否可以加仓

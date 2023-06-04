@@ -14,6 +14,13 @@ namespace CoinTrader.Strategies
     internal class StrategyCompiler
     {
         private static string[] codeExtentions = new string[] { ".cs", ".csx" };
+
+        /// <summary>
+        /// 编译策略代码
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="err"></param>
+        /// <returns></returns>
         public static Assembly Compile(string filePath, out string err)
         {
             err = string.Empty;
