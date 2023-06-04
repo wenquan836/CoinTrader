@@ -5,9 +5,14 @@ using System.Windows.Forms;
 
 namespace CoinTrader.Forms
 {
+    /// <summary>
+    /// 协助程序
+    /// </summary>
     internal static class Coroutine
     {
-
+        /// <summary>
+        /// 用于判断协程执行间隔时间
+        /// </summary>
         class TimeProvider:ITimeProvider
         {
             DateTime startTime = DateTime.Now;

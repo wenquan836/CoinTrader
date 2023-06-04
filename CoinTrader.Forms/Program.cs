@@ -19,14 +19,15 @@ namespace CoinTrader.Forms
             Application.SetCompatibleTextRenderingDefault(false);
 
             Initialize();
-            Coroutine.Init();
+            
             WindowManager.Instance.OpenWindow<WinStartup>();
-            //WindowManager.Instance.OpenWindow<WebDashboard>();
-            //WindowManager.Instance.OpenWindow<WinGATest>();
 
             Application.Run();
         }
 
+        /// <summary>
+        /// 内置浏览器内核初始化
+        /// </summary>
         private static void InitCefSharp()
         {
             var settings = new CefSettings
@@ -42,13 +43,14 @@ namespace CoinTrader.Forms
             Cef.Initialize(settings);
         }
 
-        /**
-         * 初始化
-         */
+        /// <summary>
+        /// 程序初始化
+        /// </summary>
         private static void Initialize()
         {
-            InitCefSharp();
+            InitCefSharp(); //浏览器内核初始化
             ServicePointManager.DefaultConnectionLimit = 1024;//设置最大并发连接数
+            Coroutine.Init(); //协助程序初始化
             CommandRegister.RegisterAllCommand();
         }
     }

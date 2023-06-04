@@ -2,7 +2,7 @@
  * 这是一个示例文件，
  * 放在外置的StrategiesCustomized文件夹下
  * 每次重启的时候就会动态加载StrategiesCustomized文件夹下的 .cs和.csx文件
- * 
+ * 这个文件里的代码是动态编译，修改后重启生效。
 */
 
 
