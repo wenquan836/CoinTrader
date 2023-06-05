@@ -3,11 +3,8 @@ using CoinTrader.Common.Interface;
 using CoinTrader.OKXCore.Entity;
 using CoinTrader.OKXCore.Enum;
 using CoinTrader.OKXCore.Manager;
-using CoinTrader.OKXCore.Monitor;
-using CoinTrader.OKXCore;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using CoinTrader.Common;
 using System.Threading;
@@ -20,7 +17,7 @@ namespace CoinTrader.Strategies
     /// </summary>
     public abstract class TradeStrategyBase : StrategyBase
     {
-         protected InstrumentBase  instrumentBase;
+        protected InstrumentBase  instrumentBase;
         protected ITradeStrategyRuntime runtime = null;
         public ITradeStrategyRuntime Runtime { get { return runtime; } }
 
@@ -34,12 +31,12 @@ namespace CoinTrader.Strategies
         /// <summary>
         /// 最新的盘口卖盘报价
         /// </summary>
-        protected decimal Ask { get; set; }
+        protected decimal Ask { get; private set; }
 
         /// <summary>
         /// 最新的盘口买盘报价
         /// </summary>
-        protected decimal Bid { get; set; }
+        protected decimal Bid { get; private set; }
 
         /// <summary>
         /// 初始化
