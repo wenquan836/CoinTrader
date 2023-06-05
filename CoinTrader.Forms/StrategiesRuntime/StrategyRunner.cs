@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -55,9 +56,17 @@ namespace CoinTrader.Forms.StrategiesRuntime
             {
                 try
                 {
-                    s.Init(instId);
+                    if (!s.Init(instId))
+                    {
+                        var type = s.GetType();
+                        var attr = type.GetCustomAttribute<StrategyAttribute>();
+                        string name = attr != null ?attr.Name : type.Name;
+
+                        error =  $"{name}初始化失败";
+                        break;
+                    }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     error = ex.Message;
                     break;
