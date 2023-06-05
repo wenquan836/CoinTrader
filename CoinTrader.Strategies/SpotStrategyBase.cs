@@ -19,14 +19,10 @@ namespace CoinTrader.Strategies
 
         public override bool Init(string instId)
         {
-           if(!  base.Init(instId)) return false;
+            if (!base.Init(instId)) return false;
 
             instrument = instrumentBase as InstrumentSpot;
-
-            if(instrument == null )
-            {
-
-            }
+            if(instrument == null )return false;
 
             wallet = new Wallet(instrumentBase.BaseCcy);
 

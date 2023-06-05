@@ -46,16 +46,17 @@ namespace CoinTrader.Strategies
         /// </summary>
         public override bool Init(string instId)
         {
-            if (!base.Init(instId)) return false;
+            runtime = StrategyRuntimeManager.Instance.GetRuntime(instId, IsEmulationMode);
+            if (runtime == null) return false;
+            instrumentBase = InstrumentManager.GetInstrument(instId);
 
-            runtime = StrategyRuntimeManager.Instance.GetRuntime(instId,IsEmulationMode);
-
-            if (runtime == null)
+            if (!base.Init(instId))
+            {
+                StrategyRuntimeManager.Instance.ReleaseRuntime(runtime);
+                runtime = null;
                 return false;
-
-            instrumentBase = InstrumentManager.GetInstrument(this.InstId);
-            Debug.Assert(instrumentBase != null);
-             runtime.OnTick += this.OnTickInner;
+            }
+            runtime.OnTick += this.OnTickInner;
 
             return true;
         }
