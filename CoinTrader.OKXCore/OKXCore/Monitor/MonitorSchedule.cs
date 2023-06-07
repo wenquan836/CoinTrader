@@ -2,16 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CoinTrader.Common;
-using CoinTrader.Common.Interface;
-using CoinTrader.Common;
-
 using CoinTrader.Common.Interface;
 using CoinTrader.OKXCore.Event;
-using CoinTrader.OKXCore.Monitor;
 
 namespace CoinTrader.OKXCore.Monitor
 {
@@ -62,8 +55,12 @@ namespace CoinTrader.OKXCore.Monitor
 
         public void RemoveMonitor(MonitorBase monitor)
         {
+            if(monitor == null) 
+                throw new ArgumentNullException("monitor not be null");
+
             lock (this.allMonitor)
             {
+                Debug.Assert(this.allMonitor.Contains(monitor));
                 this.allMonitor.Remove(monitor);
                 monitor.Dispose();
             }

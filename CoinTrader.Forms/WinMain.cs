@@ -249,6 +249,7 @@ namespace CoinTrader.Forms
             if(!StrategyRunner.Instance.RunStrategy(instId,strategyGroup,run, out err))
             {
                 MessageBox.Show(err,"错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Instance.LogError(err);
                 return false;
             }
 

@@ -5,7 +5,6 @@
  * 这个文件里的代码是动态编译，修改后重启生效。
 */
 
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -280,8 +279,7 @@ namespace CoinTrader.Forms.Strategies.Customer
         /// <returns></returns>
         private decimal GetClosePrice(PositionType orderSide, decimal ask, decimal bid)
         {
-            var price = orderSide == PositionType.Short ? ask : bid;
-            return price;
+            return orderSide == PositionType.Short ? ask : bid;
         }
 
         /// <summary>
@@ -293,8 +291,7 @@ namespace CoinTrader.Forms.Strategies.Customer
         /// <returns></returns>
         private decimal GetOpenPrice(PositionType orderSide, decimal ask, decimal bid)
         {
-            var price = orderSide == PositionType.Short ? bid : ask;
-            return price;
+            return orderSide == PositionType.Short ? bid : ask;
         }
 
         /// <summary>
@@ -308,9 +305,7 @@ namespace CoinTrader.Forms.Strategies.Customer
         {
             var openPrice = pos.AvgPx;
             var price = GetClosePrice(pos.SideType,ask,bid);
-            var profit = (pos.SideType == PositionType.Short ? openPrice / price : price / openPrice)-1.0m;
-
-            return profit;
+            return (pos.SideType == PositionType.Short ? openPrice / price : price / openPrice)-1.0m;
         }
 
         private decimal ToPercent(float val)
@@ -331,7 +326,6 @@ namespace CoinTrader.Forms.Strategies.Customer
         /// <returns></returns>
         private bool CanClose(Position pos,decimal ask, decimal bid)
         {
-
             var profit = GetProfitPercent(pos, ask, bid);
 
             if(profit > 0) //持仓已盈利情况

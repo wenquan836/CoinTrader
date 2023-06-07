@@ -39,6 +39,16 @@ namespace CoinTrader.Strategies
         protected decimal Bid { get; private set; }
 
         /// <summary>
+        /// 交易币种名称
+        /// </summary>
+        protected string BaseCurrency => runtime.BaseCurrency;
+
+        /// <summary>
+        /// 计价币种名称
+        /// </summary>
+        protected string QuoteCurrency => runtime.QuoteCurrency;
+
+        /// <summary>
         /// 初始化
         /// </summary>
         public override bool Init(string instId)

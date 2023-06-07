@@ -8,20 +8,6 @@ using System.Threading.Tasks;
 
 namespace CoinTrader.Common.Classes
 {
-    public enum PriceTypeEnum:int
-    {
-        [Description("固定")]
-        Fixed = 1, //固定的
-        [Description("浮动")]
-        Float = 2  //浮动的
-    }
-
-    public enum SideEnum : int
-    {
-        Sell = 0,
-        Buy = 1
-    }
-
     public enum CandleGranularity : uint
     {
         [Description( description:"1分钟")]
@@ -68,36 +54,6 @@ namespace CoinTrader.Common.Classes
         Completed = 7//:已完成（撤单成功+完全成交）
     }
 
-    /// <summary>
-    /// 支付通道方向
-    /// </summary>
-    public enum AccountApplyType:int
-    {
-        All = 0,
-        Receipt = 1,
-        Payment = 2
-    }
-
-    public enum DrawalAddressType:int 
-    {
-        Okex = 3,
-        Address = 4
-    }
-
-    public enum HistoryOrderStateEnum : int
-    {
-        All = 0,
-        Uncomplete = 2,
-        Cancelled = 3,
-        Completed = 4
-    }
-
-    public enum HistroyOrderTypeEnum: int
-    {
-        All = 0,
-        Buy = 1,
-        Sell = 2,
-    }
 
 
     /// <summary>

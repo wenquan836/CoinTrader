@@ -30,15 +30,7 @@ namespace CoinTrader.Strategies
         }
 
  
-        /// <summary>
-        /// 交易币种名称
-        /// </summary>
-        protected string BaseCurrency => runtime.BaseCurrency;
 
-        /// <summary>
-        /// 计价币种名称
-        /// </summary>
-        protected string QuoteCurrency => runtime.QuoteCurrency;
 
         /// <summary>
         /// 交易账户可用额度

@@ -12,12 +12,6 @@ namespace CoinTrader.OKXCore.REST
             this.instId = instId;
             this.ordId = orderId.ToString();
         }
-
-        public OrderQuery(string currency1, string currency2, long orderId)
-            : this(string.Format("{0}-{1}", currency1.ToUpper(), currency2), orderId)
-        {
-
-        }
         public string instId { get; set; }
         public string ordId { get; set; }
     }

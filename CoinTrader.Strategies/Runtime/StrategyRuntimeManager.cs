@@ -84,6 +84,9 @@ namespace CoinTrader.Strategies.Runtime
 
         public void ReleaseRuntime(ITradeStrategyRuntime runtime)
         {
+            if(runtime == null)
+                throw new ArgumentNullException("runtime");
+
             var key = GenerateKey(runtime.InstId,runtime.IsEmulator);
 
             lock(this)

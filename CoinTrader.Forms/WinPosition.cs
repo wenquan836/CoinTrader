@@ -1,6 +1,4 @@
-﻿
-using CoinTrader.Common;
-using CoinTrader.Common.Util;
+﻿using CoinTrader.Common.Util;
 using CoinTrader.OKXCore;
 using CoinTrader.OKXCore.Entity;
 using CoinTrader.OKXCore.Manager;
@@ -75,7 +73,7 @@ namespace CoinTrader.Forms
 
                 string[] values = new string[] {
                  pos.PosSideName,
-                 pos.Pos.ToString(),
+                 StringUtil.ToShortNumber( inst.CtVal * pos.Pos,inst.MinSizeDigit),
                  pos.AvgPx.ToString(inst.PriceFormat),
                  pos.Upl.ToString("0.00"),
                  pos.Lever.ToString(),

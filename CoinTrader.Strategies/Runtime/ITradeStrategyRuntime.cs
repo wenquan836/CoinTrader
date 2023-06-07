@@ -19,8 +19,6 @@ namespace CoinTrader.Strategies.Runtime
 
         bool IsEmulator { get; }
 
-        List<MonitorBase> GetAllMonitor();
-
         string QuoteCurrency { get; }
         string BaseCurrency { get; }
         decimal MinSize { get; }
@@ -51,6 +49,14 @@ namespace CoinTrader.Strategies.Runtime
 
         void EachSellOrder(Action<OrderBase> orderCallback);
 
+        /// <summary>
+        /// 修改订单
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="amount"></param>
+        /// <param name="newPrice"></param>
+        /// <param name="cancelOrderWhenFailed"></param>
+        /// <returns></returns>
         bool ModifyOrder(long id, decimal amount, decimal newPrice, bool cancelOrderWhenFailed);
         void EachBuyOrder(Action<OrderBase> orderCallback);
 

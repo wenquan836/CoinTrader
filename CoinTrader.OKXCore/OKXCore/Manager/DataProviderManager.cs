@@ -54,6 +54,9 @@ namespace CoinTrader.OKXCore.Manager
         /// <param name="provider"></param>
         public void ReleaseProvider(MarketDataProvider provider)
         {
+            if(provider == null)
+                throw new ArgumentNullException("provider not by null");
+
             var instId = provider.InstrumentId;
             DataProviderItem item = this.providers.ContainsKey(instId) ? providers[instId] : null;
 
@@ -76,7 +79,6 @@ namespace CoinTrader.OKXCore.Manager
         {
             get
             {
-                
                 if(_instance == null)
                 {
                     lock (lockObj)

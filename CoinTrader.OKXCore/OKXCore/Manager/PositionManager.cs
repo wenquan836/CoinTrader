@@ -1,13 +1,8 @@
 ﻿
-
-using CoinTrader.Common;
 using CoinTrader.Common;
 using Newtonsoft.Json.Linq;
-using CoinTrader.OKXCore;
 using CoinTrader.OKXCore.Entity;
 using CoinTrader.OKXCore.Enum;
-using CoinTrader.OKXCore.Event;
-using CoinTrader.OKXCore.Manager;
 using CoinTrader.OKXCore.Monitor;
 using CoinTrader.OKXCore.REST;
 using System;
@@ -20,7 +15,7 @@ namespace CoinTrader.OKXCore.Manager
     /// </summary>
     public class PositionManager
     {
-        SWPPositionMonitor monitor = new SWPPositionMonitor();
+        SWPPositionMonitor monitor = null;
         private PositionManager()
         {
             
@@ -60,7 +55,7 @@ namespace CoinTrader.OKXCore.Manager
 
             this.EachPosition((pos) =>
             {
-                if (!hasPos && string.Compare(instrument, pos.InstId) == 0)
+                if (!hasPos && string.Compare(instrument, pos.InstId,true) == 0)
                 {
                     hasPos = true;
                 }
@@ -99,7 +94,7 @@ namespace CoinTrader.OKXCore.Manager
             Position position = null;
 
             this.EachPosition((pos) => {
-                if (position == null && string.Compare( pos.InstId , instId) == 0)
+                if (position == null && string.Compare( pos.InstId , instId,true) == 0)
                 {
                     if(type == PositionType.Long && pos.PosSide == PositionSide.Long)
                     {

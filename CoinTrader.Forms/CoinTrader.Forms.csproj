@@ -558,6 +558,10 @@
     <None Include="platform.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="StrategiesCustomized\Customer1BehaviorV2.csx" />
+    <None Include="StrategiesCustomized\SpotGridBuyStrategy.csx" />
+    <None Include="StrategiesCustomized\SpotGridSellStrategy.csx" />
+    <None Include="StrategiesCustomized\SwapHedgeStrategy.csx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

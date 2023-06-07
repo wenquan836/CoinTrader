@@ -84,11 +84,6 @@ namespace CoinTrader.Strategies.Runtime
  
         public event Action<decimal, decimal> OnTick;
 
-        public List<MonitorBase> GetAllMonitor()
-        {
-            return dataProvider.GetAllMonitor();
-        }
-
         public void Buy(decimal amount)
         {
             CreateOrder api;

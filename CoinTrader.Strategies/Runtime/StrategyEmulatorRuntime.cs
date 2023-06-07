@@ -17,7 +17,7 @@ using System.Reflection;
 namespace CoinTrader.Strategies.Runtime
 {
     /// <summary>
-    /// 现货复盘模拟器
+    /// 
     /// </summary>
     public class EmulatorCandleProvider : ICandleProvider
     {
@@ -137,7 +137,7 @@ namespace CoinTrader.Strategies.Runtime
     }
 
     /// <summary>
-    /// 仿真，复盘
+    /// 现货复盘模拟器
     /// </summary>
     public class StrategyEmulatorRuntime : ITradeStrategyRuntime
     {
@@ -235,11 +235,6 @@ namespace CoinTrader.Strategies.Runtime
             return true;
         }
 
-
-        public List<MonitorBase> GetAllMonitor()
-        {
-            return new List<MonitorBase>();
-        }
         public void LoadCandle(CandleGranularity granularity)
         {
 

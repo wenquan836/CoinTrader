@@ -8,11 +8,7 @@ namespace CoinTrader.Forms
     /// </summary>
     public class USDXWallet : Wallet
     {
-        private USDXWallet(string currency)
-            : base(currency)
-        {
-
-        }
+        private USDXWallet(string currency): base(currency){}
 
         private static USDXWallet _instance = null;
 
