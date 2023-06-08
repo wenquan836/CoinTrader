@@ -29,14 +29,12 @@ namespace CoinTrader.Forms.Strategies
         public decimal SellProfitMin{get; set;}
 
         [StrategyParameter(Name = "上停止价格", Min = 0)]
-
         public decimal UpStop
         {
             get; set;
         }
 
         [StrategyParameter(Name = "下停止价格", Min = 0)]
-
         public decimal DownStop
         {
             get; set;

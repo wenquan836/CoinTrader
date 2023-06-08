@@ -204,7 +204,6 @@ namespace CoinTrader.Forms.Control
         {
             var chartWindow = WindowManager.Instance.OpenWindow<WebTradeView>();
             chartWindow.InstId = this.InstId; 
-
             chartWindow.Show();
         }
 
@@ -218,41 +217,6 @@ namespace CoinTrader.Forms.Control
         private void timerPosition_Tick(object sender, EventArgs e)
         {
             this.ShowPosition();
-        }
-
-        private void tabPage4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        
-        private void btnBuy_Click(object sender, EventArgs e)
-        {
-            this.DoTrade(PositionType.Long);
-        }
-
-        private void btnSell_Click(object sender, EventArgs e)
-        {
-            this.DoTrade(PositionType.Short);
-        }
-
-        private void DoTrade(PositionType side)
-        {
-            /*
-            decimal amount;
-            if(decimal.TryParse(this.txtNum.Text,out amount))
-            {
-               if( PositionManager.Instance.CreatePosition(this.instId, side, amount,true)>0)
-                {
-                    PureMVC.SendNotification(CoreEvent.UIPopInfo, "下单成功");
-                }
-            }
-            */
-        }
-        
-        private void txtNum_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -19,7 +19,6 @@ namespace CoinTrader.Forms
     public partial class WinMain : Form, IEventListener
     {
         List<StrategyBase> fundsStrategies = new List<StrategyBase>();
-        private List<System.Windows.Forms.Control> DataViews = new List<System.Windows.Forms.Control>();
         private List<OrderView> MyOrderViews = new List<OrderView>();
         private bool isInited = false;
         private bool isClosed = false;
@@ -403,9 +402,6 @@ namespace CoinTrader.Forms
 
             ReloadCurrencyMenus();
 
-            DataViews.Add(pnlMyOrders);
-            DataViews.Add(pnlBehavior);
-            DataViews.Add(pnlMonitor);
             MonitorSchedule.Default.AddMonotor(new TimeMonitor());
 
             EventCenter.Instance.AddListener(this);
