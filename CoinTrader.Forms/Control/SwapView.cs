@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace CoinTrader.Forms.Control
 {
-    public partial class SwapView : UserControl, IMarketView
+    public partial class SwapView : DragbleMarketView, IMarketView
     {
         MarketDataProvider dataProvider = null;
         private InstrumentSwap instrument = null;
@@ -218,5 +218,6 @@ namespace CoinTrader.Forms.Control
         {
             this.ShowPosition();
         }
+
     }
 }

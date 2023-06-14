@@ -1,18 +1,14 @@
-﻿using CefSharp;
+﻿
+using CefSharp;
 using CefSharp.WinForms;
-using CoinTrader.Common;
 using CoinTrader.Common.Classes;
-using CoinTrader.Common.Interface;
 using CoinTrader.Common.Util;
+using CommonTools.Coroutines;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CoinTrader.Forms.Control
@@ -32,34 +28,34 @@ namespace CoinTrader.Forms.Control
 
         private void CandleView_Load(object sender, EventArgs e)
         {
-            try
-            {
-                webView = new ChromiumWebBrowser();
+            
+            webView = new ChromiumWebBrowser();
+            string webPath = "file://" + Path.Combine(Application.StartupPath, "Res/Html/TradeView.html");
+            webView.JavascriptObjectRepository.Settings.LegacyBindingEnabled = true;
+            webView.Dock = DockStyle.Fill;
+            this.Controls.Add(webView);
+            webView.FrameLoadEnd += ChromiumWebBrowser1_FrameLoadEnd;
+            webView.Load(webPath);
 
-                string webPath = "file://" + Path.Combine(Application.StartupPath, "Res/Html/TradeView.html");
-                webView.JavascriptObjectRepository.Settings.LegacyBindingEnabled = true;
-
-                webView.Dock = DockStyle.Fill;
-                this.Controls.Add(webView);
-                webView.FrameLoadEnd += ChromiumWebBrowser1_FrameLoadEnd;
-                webView.Load(webPath);
-
-                ParentForm.FormClosing += ParentForm_FormClosing;
-                ParentForm.FormClosed += ParentForm_FormClosed;
-            }
-            catch
-            {
-
-            }
+            ParentForm.FormClosing += ParentForm_FormClosing;
+            ParentForm.FormClosed += ParentForm_FormClosed;
+            
         }
 
         private void ParentForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (webView != null)
             {
-                webView.Dispose();
-                webView = null;
+                webView.LoadHtml("");
+                Coroutine.StartCoroutine(DestroyWebView());
             }
+        }
+
+        private IEnumerator<IYieldInstruction>   DestroyWebView()
+        {
+            yield return new WaitForSeconds(0.3f);
+            webView.Dispose();
+            webView = null;
         }
 
         private void ParentForm_FormClosing(object sender, FormClosingEventArgs e)

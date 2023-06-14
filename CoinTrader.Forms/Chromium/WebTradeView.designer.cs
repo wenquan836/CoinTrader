@@ -56,6 +56,7 @@
             this.Name = "WebTradeView";
             this.Text = "WebTradeView";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WebTradeView_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.WebTradeView_FormClosed);
             this.ResumeLayout(false);
 
         }

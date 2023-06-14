@@ -46,7 +46,6 @@
             this.pnlBehavior = new System.Windows.Forms.FlowLayoutPanel();
             this.lblMonitor = new System.Windows.Forms.Label();
             this.lblPostion = new System.Windows.Forms.Label();
-            this.tickView1 = new CoinTrader.Forms.Control.TickView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.pnlPosition = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlEmpty = new System.Windows.Forms.Panel();
@@ -54,6 +53,7 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.pnlMonitor = new System.Windows.Forms.FlowLayoutPanel();
             this.timerPosition = new System.Windows.Forms.Timer(this.components);
+            this.tickView1 = new CoinTrader.Forms.Control.TickView();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -240,13 +240,6 @@
             this.lblPostion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblPostion.Visible = false;
             // 
-            // tickView1
-            // 
-            this.tickView1.Location = new System.Drawing.Point(345, 9);
-            this.tickView1.Name = "tickView1";
-            this.tickView1.Size = new System.Drawing.Size(248, 81);
-            this.tickView1.TabIndex = 51;
-            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.pnlPosition);
@@ -307,6 +300,13 @@
             // 
             this.timerPosition.Interval = 300;
             this.timerPosition.Tick += new System.EventHandler(this.timerPosition_Tick);
+            // 
+            // tickView1
+            // 
+            this.tickView1.Location = new System.Drawing.Point(345, 9);
+            this.tickView1.Name = "tickView1";
+            this.tickView1.Size = new System.Drawing.Size(248, 81);
+            this.tickView1.TabIndex = 51;
             // 
             // SwapView
             // 

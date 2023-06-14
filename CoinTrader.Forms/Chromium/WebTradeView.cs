@@ -1,4 +1,5 @@
-﻿using CefSharp.WinForms;
+﻿using CefSharp;
+using CefSharp.WinForms;
 
 using CoinTrader.Common;
 using CoinTrader.Common.Classes;
@@ -6,6 +7,7 @@ using CoinTrader.Common.Interface;
 using CoinTrader.Common.Util;
 using CoinTrader.OKXCore;
 using CoinTrader.OKXCore.Manager;
+using CommonTools.Coroutines;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -226,8 +228,6 @@ namespace CoinTrader.Forms.Chromium
         private void WebTradeView_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.Clean();
-            if (m_chromeBrowser != null)
-                m_chromeBrowser.Dispose();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -236,6 +236,22 @@ namespace CoinTrader.Forms.Chromium
             {
                 UpdateLast();
                 priceChangeFlag =false;
+            }
+        }
+
+        private IEnumerator<IYieldInstruction> DestroyWebView()
+        {
+            yield return null;// new WaitForSeconds(0.3f);
+            m_chromeBrowser.Dispose();
+            m_chromeBrowser = null;
+        }
+
+        private void WebTradeView_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (m_chromeBrowser != null)
+            {
+                //直接dispose webview会导致主线程卡住， 这里加个延迟
+                Coroutine.StartCoroutine(DestroyWebView());
             }
         }
     }

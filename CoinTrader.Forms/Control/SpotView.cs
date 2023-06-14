@@ -15,7 +15,7 @@ using CoinTrader.Forms.StrategiesRuntime;
 
 namespace CoinTrader.Forms.Control
 {
-    public partial class SpotView : UserControl, IMarketView
+    public partial class SpotView : DragbleMarketView, IMarketView
     {
         Wallet wallet = null;
         MarketDataProvider dataProvider = null;

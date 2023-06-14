@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace CoinTrader.Forms.Control
 {
-    public partial class SwapViewSmall : UserControl, IMarketView
+    public partial class SwapViewSmall : DragbleMarketView, IMarketView
     {
         MarketDataProvider dataProvider = null;
         private InstrumentSwap instrument = null;

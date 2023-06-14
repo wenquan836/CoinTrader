@@ -108,10 +108,10 @@
             this.panel2.Controls.Add(this.lblLoginName);
             this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(1847, 42);
+            this.panel2.Location = new System.Drawing.Point(1847, 34);
             this.panel2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(540, 1471);
+            this.panel2.Size = new System.Drawing.Size(540, 1479);
             this.panel2.TabIndex = 18;
             // 
             // tabControl1
@@ -121,7 +121,7 @@
             this.tabControl1.Controls.Add(this.tabPageMonitor);
             this.tabControl1.Controls.Add(this.tabLog);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tabControl1.Location = new System.Drawing.Point(0, 774);
+            this.tabControl1.Location = new System.Drawing.Point(0, 782);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -364,7 +364,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(2387, 42);
+            this.menuStrip1.Size = new System.Drawing.Size(2387, 34);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -377,7 +377,7 @@
             this.mniBank,
             this.mniCopyConfig});
             this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
-            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(72, 40);
+            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(72, 32);
             this.设置ToolStripMenuItem.Text = "设置";
             // 
             // 账号设置ToolStripMenuItem
@@ -422,7 +422,7 @@
             this.关闭所有ToolStripMenuItem,
             this.toolStripMenuItem4});
             this.mnSpots.Name = "mnSpots";
-            this.mnSpots.Size = new System.Drawing.Size(114, 40);
+            this.mnSpots.Size = new System.Drawing.Size(114, 32);
             this.mnSpots.Text = "现货交易";
             // 
             // 打开所有运行ToolStripMenuItem1
@@ -450,7 +450,7 @@
             this.toolStripMenuItem5,
             this.mnuSwapList});
             this.mnSwap.Name = "mnSwap";
-            this.mnSwap.Size = new System.Drawing.Size(114, 40);
+            this.mnSwap.Size = new System.Drawing.Size(114, 32);
             this.mnSwap.Text = "永续合约";
             // 
             // 持仓管理ToolStripMenuItem
@@ -484,7 +484,7 @@
             this.其他ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.交叉盘ToolStripMenuItem1});
             this.其他ToolStripMenuItem.Name = "其他ToolStripMenuItem";
-            this.其他ToolStripMenuItem.Size = new System.Drawing.Size(72, 40);
+            this.其他ToolStripMenuItem.Size = new System.Drawing.Size(72, 32);
             this.其他ToolStripMenuItem.Text = "其他";
             // 
             // 交叉盘ToolStripMenuItem1

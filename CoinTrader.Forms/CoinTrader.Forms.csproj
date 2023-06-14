@@ -202,6 +202,9 @@
     <Compile Include="Control\DepthView.Designer.cs">
       <DependentUpon>DepthView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Control\DragbleMarketView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Control\IMarketView.cs" />
     <Compile Include="Control\SpotView.cs">
       <SubType>UserControl</SubType>
