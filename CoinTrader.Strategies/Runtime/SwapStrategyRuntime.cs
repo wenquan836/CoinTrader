@@ -126,12 +126,12 @@ namespace CoinTrader.Strategies.Runtime
         /// <summary>
         /// 计价币种
         /// </summary>
-        public string QuoteCurrency => instrument.QuoteCcy;
+        public string QuoteCurrency => instrument.SettleCcy;
         
         /// <summary>
         /// 交易币种
         /// </summary>
-        public string BaseCurrency => instrument.BaseCcy;
+        public string BaseCurrency => instrument.CtValCcy;
 
         /// <summary>
         /// 最小交易数量， 1张合约* 合约面值
