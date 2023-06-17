@@ -564,7 +564,9 @@
     <None Include="StrategiesCustomized\Customer1BehaviorV2.csx" />
     <None Include="StrategiesCustomized\SpotGridBuyStrategy.csx" />
     <None Include="StrategiesCustomized\SpotGridSellStrategy.csx" />
-    <None Include="StrategiesCustomized\SwapHedgeStrategy.csx" />
+    <None Include="StrategiesCustomized\SwapHedgeStrategy.csx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

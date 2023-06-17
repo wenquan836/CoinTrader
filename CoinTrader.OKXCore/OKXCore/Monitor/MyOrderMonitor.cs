@@ -1,90 +1,59 @@
 ﻿
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Newtonsoft.Json.Linq;
 using CoinTrader.OKXCore.REST;
 using CoinTrader.OKXCore.Enum;
 using CoinTrader.OKXCore.Entity;
-using CoinTrader.Common.Classes;
 using CoinTrader.Common;
-using System.Diagnostics;
 
 namespace CoinTrader.OKXCore.Monitor
 {
     [MonitorName(Name = "交易挂单")]
     public class MyOrderMonitor : RESTMonitor
     {
-        private object locker = new object();
-        private List<OrderBase> orders = new List<OrderBase>();
-        private List<OrderBase> temp = new List<OrderBase>();
+        private List<long> ids = new List<long>();
+        private Dictionary<long, OrderBase> orderDict = new Dictionary<long, OrderBase>();
 
-        Pool<OrderBase> orderPool = null;
-
-        private Pool<OrderBase> OrderPool
-        {
-            get
-            {
-                if (orderPool == null)
-                    orderPool = Pool<OrderBase>.GetPool();
-
-                return orderPool;
-            }
-        }
         public void AddUpdateOrder(OrderBase newOrderData)
         {
-            if (System.Threading.Monitor.TryEnter(locker))
+            if(newOrderData == null)
+                throw new ArgumentNullException("newOrderData not by null");
+
+            if (System.Threading.Monitor.TryEnter(orderDict))
             {
-                OrderBase finddedOrder = null;
+                OrderBase order;
 
-                foreach (var order in orders)
+                if(!orderDict.TryGetValue(newOrderData.PublicId, out order))
                 {
-                    if (order.PublicId == newOrderData.PublicId && string.Compare(newOrderData.InstId, order.InstId, true) == 0)
-                    {
-                        finddedOrder = order;
-                        break;
-                    }
-                }
-
-                if (finddedOrder != null)
-                {
-                    finddedOrder.CopyFrom(newOrderData);
+                    order = new OrderBase();
+                    order.CopyFrom(newOrderData);
+                    orderDict.Add(order.PublicId, order);
                 }
                 else
                 {
-                    var order = OrderPool.Get();
                     order.CopyFrom(newOrderData);
-                    orders.Add(order);
                 }
-
-                System.Threading.Monitor.Exit(locker);
+ 
+                System.Threading.Monitor.Exit(orderDict);
             }
         }
         public void RemoveOrder(long id)
         {
-            if (System.Threading.Monitor.TryEnter(locker))
+            if (System.Threading.Monitor.TryEnter(orderDict))
             {
-                for (int i = 0; i < orders.Count; i++)
-                {
-                    if (orders[i].PublicId == id)
-                    {
-                        orders.RemoveAt(i);
-                        break;
-                    }
-                }
-
-                System.Threading.Monitor.Exit(locker);
+                orderDict.Remove(id);
+                System.Threading.Monitor.Exit(orderDict);
             }
         }
 
         private void EachOrder(OrderSide side, Action<OrderBase> callback)
         {
-
-            lock (locker)
+            lock (orderDict)
             {
-                foreach (var o in orders)
+                foreach (var kv in orderDict)
                 {
-                    if(o.Side == side)  callback(o);
+                    if(kv.Value.Side == side)  callback(kv.Value);
                 }
             }
         }
@@ -107,14 +76,22 @@ namespace CoinTrader.OKXCore.Monitor
 
         protected override void OnDataUpdate(JToken orderData)
         {            
-            lock (locker)
+            lock (orderDict)
             {
-                OrderPool.Put(this.orders);
-                this.orders.Clear();
-
+                OrderBase order;
+                ids.AddRange(orderDict.Keys);
+               
                 foreach (JToken jt in orderData as JArray)
                 {
-                    OrderBase order = OrderPool.Get();
+                     long id = jt.Value<long>("ordId");
+
+                    if(!orderDict.TryGetValue(id, out order))
+                    {
+                        order = new OrderBase();
+                        orderDict.Add(id, order);
+                    }
+
+                    ids.Remove(id);
 
                     try
                     {
@@ -122,12 +99,18 @@ namespace CoinTrader.OKXCore.Monitor
                     }
                     catch (Exception ex)
                     {
+                        orderDict.Remove(id);
                         Logger.Instance.LogError(" Order Data Error : \r\n" + orderData.ToString());
                         Logger.Instance.LogException(ex);
                         return;
                     }
+                 }
 
-                    orders.Add(order);
+                if(ids.Count > 0)
+                {
+                    foreach(var id in ids) 
+                        orderDict.Remove(id);
+                    ids.Clear();
                 }
 
                 this.Feed(); 

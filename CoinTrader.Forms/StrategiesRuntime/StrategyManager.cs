@@ -159,7 +159,9 @@ namespace CoinTrader.Forms.Strategies
                         group.groupType = strategyType;
                         dict.Add(groupName, group);
                     }
-                    group.strategies.Add(type);
+
+                    if(!group.strategies.Contains(type))
+                        group.strategies.Add(type);
                 }
             }
         }

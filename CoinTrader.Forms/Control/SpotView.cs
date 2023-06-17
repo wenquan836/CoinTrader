@@ -313,7 +313,7 @@ namespace CoinTrader.Forms.Control
 
         private void SpotView_ParentChanged(object sender, EventArgs e)
         {
-            if (this.Parent == null)
+            if (!this.dragging && this.Parent == null)
             {
                 StrategyRunner.Instance.StopStrategiesByInstId(InstId);
             }

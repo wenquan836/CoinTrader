@@ -23,7 +23,8 @@ namespace CoinTrader.OKXCore.Manager
 
         public void StartUpdate()
         {
-            SWPPositionMonitor monitor = this.monitor != null ? this.monitor : new SWPPositionMonitor();
+            if (this.monitor == null)
+                this.monitor = new SWPPositionMonitor();
             MonitorSchedule mgr = MonitorSchedule.Default;
             mgr.AddMonotor(monitor);
         }

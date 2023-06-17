@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.swapInfoView1 = new CoinTrader.Forms.Control.SwapInfoView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblMargin = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -51,8 +50,11 @@
             this.cTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.mode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.interest = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.swapInfoView1 = new CoinTrader.Forms.Control.SwapInfoView();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer1
@@ -72,15 +74,6 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
-            // swapInfoView1
-            // 
-            this.swapInfoView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.swapInfoView1.Location = new System.Drawing.Point(6, 12);
-            this.swapInfoView1.Name = "swapInfoView1";
-            this.swapInfoView1.Size = new System.Drawing.Size(606, 261);
-            this.swapInfoView1.TabIndex = 0;
-            this.swapInfoView1.Visible = false;
-            // 
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -89,9 +82,9 @@
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.lblTotalProfit);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(0, 957);
+            this.groupBox2.Location = new System.Drawing.Point(0, 930);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1688, 167);
+            this.groupBox2.Size = new System.Drawing.Size(1688, 194);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             // 
@@ -133,9 +126,6 @@
             // 
             // listView1
             // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.instId,
             this.posSide,
@@ -150,11 +140,12 @@
             this.cTime,
             this.mode,
             this.interest});
+            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.FullRowSelect = true;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1688, 951);
+            this.listView1.Size = new System.Drawing.Size(1688, 933);
             this.listView1.TabIndex = 3;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -225,12 +216,32 @@
             this.interest.Text = "利息";
             this.interest.Width = 159;
             // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.listView1);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1688, 933);
+            this.panel1.TabIndex = 4;
+            // 
+            // swapInfoView1
+            // 
+            this.swapInfoView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.swapInfoView1.Location = new System.Drawing.Point(6, 12);
+            this.swapInfoView1.Name = "swapInfoView1";
+            this.swapInfoView1.Size = new System.Drawing.Size(606, 261);
+            this.swapInfoView1.TabIndex = 0;
+            this.swapInfoView1.Visible = false;
+            // 
             // WinPosition
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2308, 1124);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "WinPosition";
@@ -240,6 +251,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -267,5 +279,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblTotalProfit;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel1;
     }
 }

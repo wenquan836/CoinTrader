@@ -73,7 +73,7 @@ namespace CoinTrader.Forms
 
                 string[] values = new string[] {
                  pos.PosSideName,
-                 StringUtil.ToShortNumber( inst.CtVal * pos.Pos,inst.MinSizeDigit),
+                 (inst.CtVal * pos.Pos).ToString(),
                  pos.AvgPx.ToString(inst.PriceFormat),
                  pos.Upl.ToString("0.00"),
                  pos.Lever.ToString(),

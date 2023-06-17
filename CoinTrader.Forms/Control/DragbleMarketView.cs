@@ -1,25 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.UI;
 using System.Windows.Forms;
 
 namespace CoinTrader.Forms.Control
 {
-    public class DragbleMarketView:System.Windows.Forms.UserControl
+    public class DragbleMarketView:UserControl
     {
-
-        private bool dragging = false;
+        protected bool dragging = false;
         private Point dragPoint;
         private System.Windows.Forms.Control oldParent;
-
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
-        }
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
@@ -55,6 +44,8 @@ namespace CoinTrader.Forms.Control
                     delta.Y = e.Location.Y - dragPoint.Y;
                     var point = this.Location;
                     point.X += delta.X;
+                    //oldParent.Refresh();
+                    //this.Refresh();
                     point.Y += delta.Y;
                     this.Location = point;
                    
@@ -94,6 +85,7 @@ namespace CoinTrader.Forms.Control
                 oldParent.Controls.SetChildIndex(this, insertIndex);
                 dragging = false;
                 this.Capture = false;
+                oldParent = null;
             }
         }
         private Point ScreenPointToLocalPoint(System.Windows.Forms.Control control, Point scrPoint)

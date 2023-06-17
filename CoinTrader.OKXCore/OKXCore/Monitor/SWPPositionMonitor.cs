@@ -5,6 +5,8 @@ using CoinTrader.OKXCore.Entity;
 using CoinTrader.OKXCore.REST;
 using System;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
+using CoinTrader.Common;
 
 //https://www.okx.com/docs-v5/zh/#rest-api-account-get-positions
 
@@ -14,20 +16,10 @@ namespace CoinTrader.OKXCore.Monitor
     public class SWPPositionMonitor: RESTMonitor
     {
         private bool disposed = false;
+        private List<long> ids = new List<long>();
 
-        private Pool<Position> positionPool = null;
-
-        private Pool<Position> PositionPool
-        {
-            get
-            {
-                if(positionPool == null)
-                    positionPool = Pool<Position>.GetPool();
-
-                return positionPool;
-            }
-        }
-
+        private Dictionary<long, Position> posDict = new Dictionary<long, Position>();
+ 
         public SWPPositionMonitor()
         : base(new SWPPositions(),300)
         {
@@ -36,69 +28,79 @@ namespace CoinTrader.OKXCore.Monitor
 
         public void RemovePosition(long id)
         {
-            if(System.Threading.Monitor.TryEnter(posList))
+            if (System.Threading.Monitor.TryEnter(posDict))
             {
-                for (int i = 0; i < posList.Count; i++)
-                {
-                    if (posList[i].PosId == id)
-                    {
-                        posList.RemoveAt(i);
-                        break;
-                    }
-                }
-
-                System.Threading.Monitor.Exit(posList);
+                posDict.Remove(id);
+                System.Threading.Monitor.Exit(posDict);
             }
         }
         public void EachPostion(Action<Position> callback)
         {
-            lock(posList)
+            lock(posDict)
             {
-                foreach(var item in posList)
+                foreach(var kv in posDict)
                 {
-                    callback(item);
+                    callback(kv.Value);
                 }
             }
         }
 
         public override void Dispose()
         {
-            lock (posList)
-            {
-                disposed = true;
-                PositionPool.Put(posList);
-                posList.Clear();
-            }
-
+            disposed = true;
             base.Dispose();
         }
-       
-        private List<Position> posList = new List<Position>();
+
+
         /// <summary>
         ///
         /// </summary>
         /// <param name="data"></param>
         protected override void OnDataUpdate(JToken data)
         {
-            
+            if (disposed) return;
             var array = data as JArray;
-            lock (this.posList)
-            {
-                if(disposed) return;
 
-                PositionPool.Put(this.posList);
-                this.posList.Clear();
-                
+            lock (this.posDict)
+            {
+                Position pos; long posId;
+                ids.AddRange(posDict.Keys);
+
                 foreach (var item in array)
                 {
-                    var pos = PositionPool.Get();
+                    posId = item.Value<long>("posId");
+                    if (!posDict.TryGetValue(posId, out pos))
+                    {
+                        pos = new Position();
+                        posDict.Add(posId, pos);
+                    }
 
-                    pos.ParseFromJson(item);
-                    posList.Add(pos);
+                    try
+                    {
+                        pos.ParseFromJson(item);
+                    }
+                    catch (Exception ex)
+                    {
+                        posDict.Remove(posId);
+                        Logger.Instance.LogError(" Position Data Error : \r\n" + item.ToString());
+                        Logger.Instance.LogException(ex);
+                        return;
+                    }
+                    
+                    ids.Remove(posId);
                 }
 
-                this.Feed();
+                if (ids.Count > 0)
+                {
+                    foreach (var id in ids)
+                    {
+                        posDict.Remove(id);
+                    }
+                    ids.Clear();
+                }
             }
+
+            this.Feed();
         }
     }
 }

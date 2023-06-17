@@ -111,7 +111,7 @@ namespace CoinTrader.Forms.Control
 
         protected override void OnParentChanged(EventArgs e)
         {
-            if (this.Parent == null)
+            if (!this.dragging && this.Parent == null)
             {
                 this.Clean();
             }

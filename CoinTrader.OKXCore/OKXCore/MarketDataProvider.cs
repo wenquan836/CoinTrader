@@ -22,6 +22,8 @@ namespace  CoinTrader.OKXCore
         protected List<CandleMonitor> candleMonitorList = new List<CandleMonitor>();
         protected InstrumentBase instrument;
 
+        private bool priceReceived = false;
+
         /// <summary>
         /// 最后访问深度表的时间如果长时间没有访问则关闭， 深度表比较消耗性能。
         /// </summary>
@@ -180,7 +182,9 @@ namespace  CoinTrader.OKXCore
         {
             this.Ask = ctcTickerMonitor.Ask;
             this.Bid = ctcTickerMonitor.Bid;
+            
             UpdatePrices();
+            priceReceived = true;
         }
 
         private void UpdatePrices()
@@ -247,7 +251,7 @@ namespace  CoinTrader.OKXCore
         {
             get
             {
-                return this.monitorManager.AllIsEffective();
+                return priceReceived && this.monitorManager.AllIsEffective();
             }
         }
         public void Dispose()
