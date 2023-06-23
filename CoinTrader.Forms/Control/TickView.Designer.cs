@@ -28,11 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label17 = new System.Windows.Forms.Label();
             this.lblAskPrice = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.lblBidPrice = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.pnlChart = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // label17
@@ -44,6 +47,7 @@
             this.label17.Size = new System.Drawing.Size(52, 21);
             this.label17.TabIndex = 51;
             this.label17.Text = "买入";
+            this.label17.Click += new System.EventHandler(this.TickView_Click);
             // 
             // lblAskPrice
             // 
@@ -54,6 +58,7 @@
             this.lblAskPrice.Size = new System.Drawing.Size(21, 21);
             this.lblAskPrice.TabIndex = 53;
             this.lblAskPrice.Text = "0";
+            this.lblAskPrice.Click += new System.EventHandler(this.TickView_Click);
             // 
             // label7
             // 
@@ -64,6 +69,7 @@
             this.label7.Size = new System.Drawing.Size(52, 21);
             this.label7.TabIndex = 50;
             this.label7.Text = "卖出";
+            this.label7.Click += new System.EventHandler(this.TickView_Click);
             // 
             // lblBidPrice
             // 
@@ -74,6 +80,7 @@
             this.lblBidPrice.Size = new System.Drawing.Size(21, 21);
             this.lblBidPrice.TabIndex = 52;
             this.lblBidPrice.Text = "0";
+            this.lblBidPrice.Click += new System.EventHandler(this.TickView_Click);
             // 
             // label2
             // 
@@ -85,6 +92,22 @@
             this.label2.Size = new System.Drawing.Size(241, 21);
             this.label2.TabIndex = 54;
             this.label2.Text = "_____________________";
+            this.label2.Click += new System.EventHandler(this.TickView_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 2000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // pnlChart
+            // 
+            this.pnlChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlChart.Location = new System.Drawing.Point(0, 0);
+            this.pnlChart.Name = "pnlChart";
+            this.pnlChart.Size = new System.Drawing.Size(261, 72);
+            this.pnlChart.TabIndex = 55;
+            this.pnlChart.Visible = false;
+            this.pnlChart.Click += new System.EventHandler(this.TickView_Click);
             // 
             // TickView
             // 
@@ -95,8 +118,10 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.lblBidPrice);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.pnlChart);
             this.Name = "TickView";
             this.Size = new System.Drawing.Size(261, 72);
+            this.Click += new System.EventHandler(this.TickView_Click);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -109,5 +134,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblBidPrice;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Panel pnlChart;
     }
 }

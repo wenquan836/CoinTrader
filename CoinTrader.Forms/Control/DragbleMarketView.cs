@@ -85,6 +85,8 @@ namespace CoinTrader.Forms.Control
                 oldParent.Controls.SetChildIndex(this, insertIndex);
                 dragging = false;
                 this.Capture = false;
+
+                oldParent.Refresh();
                 oldParent = null;
             }
         }
