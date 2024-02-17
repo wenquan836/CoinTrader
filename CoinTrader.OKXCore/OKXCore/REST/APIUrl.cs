@@ -43,7 +43,6 @@ namespace CoinTrader.OKXCore.REST
         public static readonly string BatchOrdersCreate = UrlRoot + "/api/v5/trade/batch-orders"; //批量创建订单
         public static readonly string BatchOrdersModify = UrlRoot + "/api/v5/trade/amend-batch-orders"; //批量修改订单
         public static readonly string BatchOrdersCancel = UrlRoot + "/api/v5/trade/cancel-batch-orders";//批量删除订单
-
         public static readonly string History = UrlRoot + "/api/v5/trade/orders-history-archive";//历史订单
 
         //public static readonly string CTCDepth = "/api/spot/v3/instruments/{0}-{1}/book?size={2}&depth={3}"; //币对的深度信息 

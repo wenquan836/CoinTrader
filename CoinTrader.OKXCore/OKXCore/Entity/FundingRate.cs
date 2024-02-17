@@ -1,4 +1,5 @@
-﻿using CoinTrader.Common.Util;
+﻿using CoinTrader.Common.Extend;
+using CoinTrader.Common.Util;
 using Newtonsoft.Json.Linq;
 using System;
 
@@ -22,8 +23,8 @@ namespace CoinTrader.OKXCore.Entity
         {
             this.InstType = json.Value<string>("instType");
             this.InstId = json.Value<string>("instId");
-            this.Rate = json.Value<float>("fundingRate");
-            this.NextRate = json.Value<float>("nextFundingRate");
+            this.Rate = json.ValueWithDefault<float>("fundingRate");
+            this.NextRate = json.ValueWithDefault <float>("nextFundingRate");
             this.Time = DateUtil.TimestampMSToDateTime(json.Value<long>("fundingTime"));
             this.NextTime = DateUtil.TimestampMSToDateTime(json.Value<long>("nextFundingTime"));
         }

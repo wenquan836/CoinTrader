@@ -26,6 +26,8 @@ namespace CoinTrader.Forms
 
         private string title = "";
 
+        private bool UseSmallSwapView = true;
+
         public WinMain()
         {
             InitializeComponent();
@@ -154,14 +156,29 @@ namespace CoinTrader.Forms
                 if (InstrumentManager.SwapInstrument.HasInstrumentByCoin(s))
                 {
                     string instId = $"{s}-{Config.Instance.UsdCoin}-SWAP".ToUpper();
-                    if (AddView<SwapView>(instId, group, true))
+                    if (UseSmallSwapView)
                     {
-                        yield return null;
+                        if (AddView<SwapViewSmall>(instId, group, true))
+                        {
+                            yield return null;
+                        }
+                        else
+                        {
+                            mnSwap.Enabled = true;
+                            yield break;
+                        }
                     }
                     else
                     {
-                        mnSwap.Enabled = true;
-                        yield break;
+                        if (AddView<SwapView>(instId, group, true))
+                        {
+                            yield return null;
+                        }
+                        else
+                        {
+                            mnSwap.Enabled = true;
+                            yield break;
+                        }
                     }
                 }
             }
@@ -192,13 +209,13 @@ namespace CoinTrader.Forms
             ToolStripMenuItem item = sender as ToolStripMenuItem;
             var group = item.Tag as StrategyGroup;
             var currency = item.Name;
-            if(currency == RunAllMenuItem)
+            if (currency == RunAllMenuItem)
             {
                 Coroutine.StartCoroutine(RunAllSpot(group));
                 return;
             }
 
-            string instId = $"{currency}-{Config.Instance.UsdCoin}".ToUpper();            
+            string instId = $"{currency}-{Config.Instance.UsdCoin}".ToUpper();
             AddView<SpotView>(instId, group, false);
         }
 
@@ -214,7 +231,15 @@ namespace CoinTrader.Forms
             }
 
             string instId = $"{currency}-{Config.Instance.UsdCoin}-SWAP".ToUpper();
-            AddView<SwapView>(instId, group, false);
+
+            if (UseSmallSwapView)
+            {
+                AddView<SwapViewSmall>(instId, group, false);
+            }
+            else
+            {
+                AddView<SwapView>(instId, group, false);
+            }
         }
 
         private void RemoveAllView<T>() where T:UserControl
