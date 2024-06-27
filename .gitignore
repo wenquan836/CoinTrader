@@ -1,0 +1,12 @@
+
+/.vs
+/CoinTrader.Common/bin
+/CoinTrader.Forms/obj
+/CoinTrader.Strategies/bin
+/packages
+/CoinTrader.Strategies/obj
+/CoinTrader.OKXCore/OKXCore/bin
+/CoinTrader.OKXCore/OKXCore/obj
+/CoinTrader.Forms/.vs
+/CoinTrader.Common/.vs
+/CoinTrader.Common/obj
