@@ -10,3 +10,6 @@
 /CoinTrader.Forms/.vs
 /CoinTrader.Common/.vs
 /CoinTrader.Common/obj
+CoinTrader.Forms/Config_Crypto_V5.json
+/CoinTrader.Strategies/.vs
+/CoinTrader.OKXCore/OKXCore/.vs

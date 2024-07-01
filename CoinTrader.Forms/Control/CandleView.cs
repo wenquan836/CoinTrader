@@ -28,18 +28,19 @@ namespace CoinTrader.Forms.Control
 
         private void CandleView_Load(object sender, EventArgs e)
         {
-            
-            webView = new ChromiumWebBrowser();
-            string webPath = "file://" + Path.Combine(Application.StartupPath, "Res/Html/TradeView.html");
-            webView.JavascriptObjectRepository.Settings.LegacyBindingEnabled = true;
-            webView.Dock = DockStyle.Fill;
-            this.Controls.Add(webView);
-            webView.FrameLoadEnd += ChromiumWebBrowser1_FrameLoadEnd;
-            webView.Load(webPath);
+            if (!DesignMode)
+            {
+                webView = new ChromiumWebBrowser();
+                string webPath = "file://" + Path.Combine(Application.StartupPath, "Res/Html/TradeView.html");
+                webView.JavascriptObjectRepository.Settings.LegacyBindingEnabled = true;
+                webView.Dock = DockStyle.Fill;
+                this.Controls.Add(webView);
+                webView.FrameLoadEnd += ChromiumWebBrowser1_FrameLoadEnd;
+                webView.Load(webPath);
 
-            ParentForm.FormClosing += ParentForm_FormClosing;
-            ParentForm.FormClosed += ParentForm_FormClosed;
-            
+                ParentForm.FormClosing += ParentForm_FormClosing;
+                ParentForm.FormClosed += ParentForm_FormClosed;
+            }
         }
 
         private void ParentForm_FormClosed(object sender, FormClosedEventArgs e)
