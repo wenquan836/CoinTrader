@@ -113,6 +113,10 @@
     <Reference Include="CefSharp.Core, Version=126.2.70.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
       <HintPath>..\packages\CefSharp.Common.126.2.70\lib\net462\CefSharp.Core.dll</HintPath>
     </Reference>
+    <Reference Include="CefSharp.Core.Runtime, Version=126.2.70.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CefSharp.Common.126.2.70\CefSharp\x64\CefSharp.Core.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="CefSharp.WinForms, Version=126.2.70.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
       <HintPath>..\packages\CefSharp.WinForms.126.2.70\lib\net462\CefSharp.WinForms.dll</HintPath>
     </Reference>
