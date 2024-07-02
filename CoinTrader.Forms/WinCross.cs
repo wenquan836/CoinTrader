@@ -256,23 +256,29 @@ namespace CoinTrader.Forms
             {
                 candleMonitor1.EachCandle((c) =>
                 {
-                    var candle = pool.Get();
-                    c.CopyTo(candle);
-                    if (swapped)
-                        candleList2.Add(candle);
-                    else
-                        candleList1.Add(candle);
+                    if (c.Time >= dateTimePicker1.Value)
+                    {
+                        var candle = pool.Get();
+                        c.CopyTo(candle);
+                        if (swapped)
+                            candleList2.Add(candle);
+                        else
+                            candleList1.Add(candle);
+                    }
                     return false;
                 });
 
                 candleMonitor2.EachCandle((c) =>
                 {
-                    var candle = pool.Get();
-                    c.CopyTo(candle);
-                    if (swapped)
-                        candleList1.Add(candle);
-                    else
-                        candleList2.Add(candle);
+                    if (c.Time >= dateTimePicker1.Value)
+                    {
+                        var candle = pool.Get();
+                        c.CopyTo(candle);
+                        if (swapped)
+                            candleList1.Add(candle);
+                        else
+                            candleList2.Add(candle);
+                    }
                     return false;
                 });
 

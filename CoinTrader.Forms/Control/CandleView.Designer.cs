@@ -32,10 +32,10 @@
             // 
             // CandleView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "CandleView";
-            this.Size = new System.Drawing.Size(1101, 448);
+            this.Size = new System.Drawing.Size(1201, 512);
             this.Load += new System.EventHandler(this.CandleView_Load);
             this.ParentChanged += new System.EventHandler(this.CandleView_ParentChanged);
             this.ResumeLayout(false);

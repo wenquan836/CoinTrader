@@ -564,6 +564,9 @@
     </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="CoinTradeGecko_TemporaryKey.pfx" />
+    <None Include="Config_Crypto_V5.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
