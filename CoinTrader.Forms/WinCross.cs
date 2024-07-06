@@ -62,7 +62,7 @@ namespace CoinTrader.Forms
                 }
             }
 
-             
+             /*
             for (int i = 0; i < MainCoins.Length; i++ )
             {
                 var inst = string.Format("{0}-{1}", MainCoins[i], Config.Instance.UsdCoin);
@@ -70,11 +70,25 @@ namespace CoinTrader.Forms
             }
 
             cmbCoin1.Items.AddRange(MainCoins);
+
+            */
             var instList = InstrumentManager.SpotInstrument.GetAllInstrument();
+
 
             foreach (var inst in instList)
             {
-                if (!MainCoins.Contains(inst.Value.InstrumentId))
+                //if (!MainCoins.Contains(inst.Value.InstrumentId))
+                {
+                    if (string.Compare(Config.Instance.UsdCoin, inst.Value.QuoteCcy, true) == 0)
+                    {
+                        cmbCoin1.Items.Add(inst.Value.InstrumentId);
+                    }
+                }
+            }
+
+            foreach (var inst in instList)
+            {
+                //if (!MainCoins.Contains(inst.Value.InstrumentId))
                 {
                     if (string.Compare(Config.Instance.UsdCoin, inst.Value.QuoteCcy, true) == 0)
                     {
