@@ -154,7 +154,7 @@ namespace CoinTrader.Forms.Chromium
                 return;
 
             var frame = m_chromeBrowser.GetBrowser().MainFrame;
-
+            
             if (frame == null) 
                 return ;
 
