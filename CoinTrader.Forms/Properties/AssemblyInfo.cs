@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("白水计算机工作室")]
 [assembly: AssemblyProduct("OKX数字资产交易管理")]
-[assembly: AssemblyCopyright("Copyright ©  2019~2023")]
+[assembly: AssemblyCopyright("Copyright ©  2019~2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
