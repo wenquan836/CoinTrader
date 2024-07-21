@@ -26,7 +26,7 @@ namespace CoinTrader.Forms
 
         private string title = "";
 
-        private bool UseSmallSwapView = true;
+        private bool UseSmallSwapView = false;
 
         public WinMain()
         {

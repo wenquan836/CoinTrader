@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.swapInfoView1 = new CoinTrader.Forms.Control.SwapInfoView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblMargin = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -51,7 +52,6 @@
             this.mode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.interest = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.swapInfoView1 = new CoinTrader.Forms.Control.SwapInfoView();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -68,11 +68,20 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.swapInfoView1);
-            this.groupBox1.Location = new System.Drawing.Point(1694, 0);
+            this.groupBox1.Location = new System.Drawing.Point(848, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(614, 1124);
+            this.groupBox1.Size = new System.Drawing.Size(670, 985);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
+            // 
+            // swapInfoView1
+            // 
+            this.swapInfoView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.swapInfoView1.Location = new System.Drawing.Point(7, 14);
+            this.swapInfoView1.Name = "swapInfoView1";
+            this.swapInfoView1.Size = new System.Drawing.Size(661, 298);
+            this.swapInfoView1.TabIndex = 0;
+            this.swapInfoView1.Visible = false;
             // 
             // groupBox2
             // 
@@ -82,45 +91,45 @@
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.lblTotalProfit);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(0, 930);
+            this.groupBox2.Location = new System.Drawing.Point(0, 763);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1688, 194);
+            this.groupBox2.Size = new System.Drawing.Size(841, 222);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             // 
             // lblMargin
             // 
             this.lblMargin.AutoSize = true;
-            this.lblMargin.Location = new System.Drawing.Point(153, 106);
+            this.lblMargin.Location = new System.Drawing.Point(167, 121);
             this.lblMargin.Name = "lblMargin";
-            this.lblMargin.Size = new System.Drawing.Size(21, 21);
+            this.lblMargin.Size = new System.Drawing.Size(22, 24);
             this.lblMargin.TabIndex = 1;
             this.lblMargin.Text = "0";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(51, 106);
+            this.label3.Location = new System.Drawing.Point(56, 121);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 21);
+            this.label3.Size = new System.Drawing.Size(106, 24);
             this.label3.TabIndex = 0;
             this.label3.Text = "总保证金";
             // 
             // lblTotalProfit
             // 
             this.lblTotalProfit.AutoSize = true;
-            this.lblTotalProfit.Location = new System.Drawing.Point(153, 55);
+            this.lblTotalProfit.Location = new System.Drawing.Point(167, 63);
             this.lblTotalProfit.Name = "lblTotalProfit";
-            this.lblTotalProfit.Size = new System.Drawing.Size(21, 21);
+            this.lblTotalProfit.Size = new System.Drawing.Size(22, 24);
             this.lblTotalProfit.TabIndex = 1;
             this.lblTotalProfit.Text = "0";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(72, 55);
+            this.label1.Location = new System.Drawing.Point(79, 63);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 21);
+            this.label1.Size = new System.Drawing.Size(82, 24);
             this.label1.TabIndex = 0;
             this.label1.Text = "总盈利";
             // 
@@ -145,7 +154,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1688, 933);
+            this.listView1.Size = new System.Drawing.Size(841, 766);
             this.listView1.TabIndex = 3;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -224,23 +233,14 @@
             this.panel1.Controls.Add(this.listView1);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1688, 933);
+            this.panel1.Size = new System.Drawing.Size(841, 766);
             this.panel1.TabIndex = 4;
-            // 
-            // swapInfoView1
-            // 
-            this.swapInfoView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.swapInfoView1.Location = new System.Drawing.Point(6, 12);
-            this.swapInfoView1.Name = "swapInfoView1";
-            this.swapInfoView1.Size = new System.Drawing.Size(606, 261);
-            this.swapInfoView1.TabIndex = 0;
-            this.swapInfoView1.Visible = false;
             // 
             // WinPosition
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2308, 1124);
+            this.ClientSize = new System.Drawing.Size(1518, 985);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);

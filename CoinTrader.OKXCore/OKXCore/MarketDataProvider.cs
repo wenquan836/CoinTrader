@@ -210,6 +210,11 @@ namespace  CoinTrader.OKXCore
             }
         }
 
+        public T GetMonitor<T>() where T :MonitorBase
+        {
+            return this.monitorManager.GetMonitor<T>();
+        }
+
         public List<MonitorBase> GetAllMonitor()
         {
             List<MonitorBase> list = new List<MonitorBase>();

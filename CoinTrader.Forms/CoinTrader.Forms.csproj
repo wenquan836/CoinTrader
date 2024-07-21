@@ -296,6 +296,7 @@
     <Compile Include="Control\StrategyView.Designer.cs">
       <DependentUpon>StrategyView.cs</DependentUpon>
     </Compile>
+    <Compile Include="StrategiesBuiltin\SwapHedgeStrategy.cs" />
     <Compile Include="StrategiesRuntime\StrategyCompiler.cs" />
     <Compile Include="StrategiesRuntime\StrategyManager.cs" />
     <Compile Include="StrategiesRuntime\StrategyRunner.cs" />

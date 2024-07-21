@@ -27,6 +27,20 @@ namespace CoinTrader.OKXCore.Monitor
             return new List<MonitorBase>(this.allMonitor.ToArray());
         }
 
+        public T  GetMonitor<T>() where T : MonitorBase
+        {
+            lock (this.allMonitor)
+            {
+                foreach (var m in this.allMonitor)
+                {
+                   if(m.GetType() == typeof(T))
+                        return (T)m;
+                }
+            }
+
+            return default(T);
+        }
+
         public void AddMonotor(MonitorBase monitor)
         {
             lock (this.allMonitor)

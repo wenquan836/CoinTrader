@@ -5,6 +5,7 @@ using CoinTrader.OKXCore;
 using CoinTrader.OKXCore.Entity;
 using CoinTrader.OKXCore.Enum;
 using CoinTrader.OKXCore.Manager;
+using CoinTrader.OKXCore.Monitor;
 using CoinTrader.Strategies;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace CoinTrader.Forms.Control
         MarketDataProvider dataProvider = null;
         private InstrumentSwap instrument = null;
         private string instId = "";
+        SWPFundingRateMonitor fundingRateMonitor = null;
         public string InstId
         {
             get
@@ -51,10 +53,13 @@ namespace CoinTrader.Forms.Control
             this.instrument = InstrumentManager.SwapInstrument.GetInstrument(instId);
             this.lblInstrument.Text = instId;
             this.instId = instId;
-            this.lblMinSize.Text = instrument.MinSize.ToString();
-            this.lblMinAmount.Text = instrument.CtVal.ToString();
+            this.lblMinSize.Text = instrument.MinSize.ToString()+"张";
+            this.lblMinAmount.Text = instrument.CtVal.ToString()+instrument.CtValCcy;
             this.lblLever.Text = instrument.Lever.ToString();
             this.lblFee.Text = instrument.Category.ToString();
+            fundingRateMonitor=dataProvider.GetMonitor<SWPFundingRateMonitor>();
+            //fundingRateMonitor = new SWPFundingRateMonitor(this.instId);
+            //dataProvider.AddMonitor(fundingRateMonitor);
             RefreshStrategies();
         }
 
@@ -179,6 +184,10 @@ namespace CoinTrader.Forms.Control
             this.lblMonitor.ForeColor = this.dataProvider != null && this.dataProvider.Effective ? Color.Red : Color.Black;
 
             lblPostion.Visible = PositionManager.Instance.HasPosition(this.instId);
+            if (fundingRateMonitor != null)
+            {
+                lblFee.Text = Math.Round( fundingRateMonitor.FundingRate.Rate * 100,3) + "%";
+            }
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
