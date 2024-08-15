@@ -37,6 +37,7 @@ namespace CoinTrader.Forms
         CandleGranularity granularity = CandleGranularity.D1;
 
         int waitCandleLoadCount = 2;
+        decimal priceScale = 1.0m;
 
         Dictionary<string, MarketDataProvider> cachedProviders = new Dictionary<string, MarketDataProvider>();
 
@@ -62,6 +63,8 @@ namespace CoinTrader.Forms
                 }
             }
 
+            cmbScale.SelectedIndex = cmbScale.Items.IndexOf("1");
+            //cmbScale.Text = "1";
              /*
             for (int i = 0; i < MainCoins.Length; i++ )
             {
@@ -221,6 +224,11 @@ namespace CoinTrader.Forms
 
             waitCandleLoadCount = 2;
 
+            if(!decimal.TryParse(cmbScale.Text,out priceScale))
+            {
+                priceScale = 1;
+            }
+
             if (!cachedProviders.TryGetValue(coin1, out provider1))
             {
                 provider1 = DataProviderManager.Instance.GetProvider(coin1);
@@ -296,6 +304,8 @@ namespace CoinTrader.Forms
                     return false;
                 });
 
+                
+
                 foreach (var candle1 in candleList1)
                 {
                     while (candleList2.Count > 0)
@@ -309,10 +319,10 @@ namespace CoinTrader.Forms
                         {
                             var candle3 = pool.Get();
                             candle3.Time    = candle1.Time;
-                            candle3.Open    = candle1.Open / candle2.Open;
-                            candle3.Close   = candle1.Close / candle2.Close;
-                            candle3.Low     = candle1.Low / candle2.Low;
-                            candle3.High    = candle1.High / candle2.High;
+                            candle3.Open    = candle1.Open / candle2.Open * priceScale;
+                            candle3.Close   = candle1.Close / candle2.Close * priceScale;
+                            candle3.Low     = candle1.Low / candle2.Low * priceScale;
+                            candle3.High    = candle1.High / candle2.High * priceScale;
                             candle3.Volume  = candle2.Volume;
 
                             if(candle3.High < candle3.Low)
@@ -378,6 +388,10 @@ namespace CoinTrader.Forms
             var item = cmbGranularity.SelectedItem as EnumField;   
             granularity = (CandleGranularity)Enum.Parse(typeof(CandleGranularity), item.ValueName);
             btnRefresh_Click(null, null);
+        }
+
+        private void cmbScale_SelectedIndexChanged(object sender, EventArgs e)
+        {
         }
     }
 }
