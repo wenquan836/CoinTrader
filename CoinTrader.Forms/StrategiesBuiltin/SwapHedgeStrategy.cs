@@ -1,4 +1,4 @@
-﻿
+﻿/*
 using System;
 using System.ComponentModel;
 using CoinTrader.Strategies;
@@ -8,11 +8,13 @@ using CoinTrader.OKXCore;
 using CoinTrader.OKXCore.Entity;
 using CoinTrader.OKXCore.Enum;
 using CoinTrader.OKXCore.Manager;
+using CoinTrader.Common;
 
 namespace CoinTrader.Forms.Strategies
 {
     public enum OrderInterval
     {
+        H1 = 0,
         D1 = 1,
         H4 = 2,
         H6 = 3,
@@ -25,7 +27,21 @@ namespace CoinTrader.Forms.Strategies
         [Description("未设置")]
         None = 0,
         BTC,
-        ETH
+        ETH,
+        SOL,
+        DOGE
+    }
+    public enum PositionRatio
+    {
+        L9S1,
+        L8S2,
+        L7S3,
+        L6S4,
+        L5S5,
+        L4S6,
+        L3S7,
+        L2S8,
+        L1S9,
     }
 
     public enum SizeType
@@ -76,7 +92,7 @@ namespace CoinTrader.Forms.Strategies
 
         [StrategyParameter(Name = "停止价格", Min = 0, Max = double.MaxValue, Intro ="如果此参数非0，则到达这个价格后停止下单")]
         public decimal StopPrice { get; set; } 
-        [StrategyParameter(Name = "止损利润", Min = 0.002f, Max = 2.0f)]
+        [StrategyParameter(Name = "止损利润", Min = -2f, Max = 2.0f)]
         public float StopLoss { get; set; }        
         
         [StrategyParameter(Name = "止盈利润", Min = 0.002f, Max = 2.0f)]
@@ -91,36 +107,46 @@ namespace CoinTrader.Forms.Strategies
         [StrategyParameter(Name = "杠杆倍数", Min = 1, Max = 10)]
         public uint Lever { get; set; }
 
-        /*
+        //[StrategyParameter(Name = "自动增减保证金")]
+        //public bool AutoMargin { get; set; } = false;
 
-        [StrategyParameter(Name = "自动增减保证金")]
-        public bool AutoMargin { get; set; } = false;
+        //[StrategyParameter(Name = "保证金不足阈值", Dependent = "AutoMargin", DependentValue = true, Min = 2, Max = 10)]
+        //public float MarginLowThreshold { get; set; } = 2.0f;
 
-        [StrategyParameter(Name = "保证金不足阈值", Dependent = "AutoMargin", DependentValue = true, Min = 2, Max = 10)]
-        public float MarginLowThreshold { get; set; } = 2.0f;
+        //[StrategyParameter(Name = "保证金多余阈值", Dependent = "AutoMargin", DependentValue = true, Min = 2, Max = 10)]
+        //public float MarginHighThreshold { get; set; } = 10.0f;
 
-        [StrategyParameter(Name = "保证金多余阈值", Dependent = "AutoMargin", DependentValue = true, Min = 2, Max = 10)]
-        public float MarginHighThreshold { get; set; } = 10.0f;
-
-        [StrategyParameter(Name = "增减保证金")]
-        public decimal MarginChangeAmount { get; set; }
-        */
-
-
+        //[StrategyParameter(Name = "增减保证金")]
+        //public decimal MarginChangeAmount { get; set; }
+        
         private object lockObj = new object();
 
         public double maxProfit = 0;
-        DateTime maxProfitTime = DateTime.Now;//最高利润率发生时间
-        CountDown cdMargin = new CountDown(20000,false);
+        private DateTime maxProfitTime = DateTime.Now;//最高利润率发生时间
+        private CountDown cdMargin = new CountDown(20000,false);
+        private decimal? lastBuyPrice = null;
 
+        private string _lastBuyPriceKey = null;
+        private Position originShortPosition = null;
+        private string LastBuyPriceKey
+        {
+            get
+            {
+                if(_lastBuyPriceKey == null)
+                {
+                    _lastBuyPriceKey = string.Format("{0}_{1}_last_buy", this.GetType().Name, this.shortDataProvider.InstrumentId);
+                }
+                return _lastBuyPriceKey;
+            }
+        }
 
         public SwapHedgeStrategy()
         {
             Size = 200;
             Percent = 0.1;
-            TakeProfit = 0.05f;
-            Retreat = 0.2;
-            StopLoss = 0.025f;
+            TakeProfit = 0.104f;
+            Retreat = 0.02;
+            StopLoss = 0.05f;
             Interval = OrderInterval.D1;
             Lever = 2;
         }
@@ -133,11 +159,8 @@ namespace CoinTrader.Forms.Strategies
             {
                 case LongPositionCoin.None:
                     return;
-                case LongPositionCoin.BTC:
-                    longInst = string.Format("{0}-{1}-SWAP", "BTC", QuoteCurrency);
-                    break;
-                case LongPositionCoin.ETH:
-                    longInst = string.Format("{0}-{1}-SWAP", "ETH", QuoteCurrency);
+                default:
+                    longInst = string.Format("{0}-{1}-SWAP", LongCoin.ToString().ToUpper(), QuoteCurrency);
                     break;
             }
 
@@ -232,9 +255,33 @@ namespace CoinTrader.Forms.Strategies
                     //{
                     //    CheckMargin(positionLong, positionShort);
                     //}
-                    var uplPercent = Convert.ToDouble(GetPositionProfit(positionLong, longAsk, longBid) + GetPositionProfit(positionShort, shortAsk, shortBid));
+                    var profitShort = GetPositionProfit(positionShort, shortAsk, shortBid);
+                    var uplPercent = Convert.ToDouble(GetPositionProfit(positionLong, longAsk, longBid) + profitShort);
                     var uplValue = positionLong.Upl + positionShort.Upl;
                     bool close = false;
+
+                    if(profitShort > 0)//存在盈利
+                    {
+                        var curCount = (1 - profitShort) * positionShort.AvailPos;
+                        if (lastBuyPrice == null)
+                            lastBuyPrice = LocalStorage.GetValue<decimal>(LastBuyPriceKey);
+                        
+                        if(originShortPosition == null)
+                        {
+                            string storeKey = $"{this.GetType().Name}_{shortDataProvider.InstrumentId}_short";
+                            originShortPosition = LocalStorage.GetValue<Position>(storeKey);
+
+                            if(originShortPosition == null)
+                            {
+                                originShortPosition = positionShort;
+                                LocalStorage.SetValue(storeKey, originShortPosition);
+                            }
+                        }
+
+                       // PositionManager.Instance.ClosePosition(positionShort.PosId,);
+
+                    }
+
                     ///对冲利润大于止盈利润值
                     if (uplPercent >= TakeProfit)
                     {
@@ -246,6 +293,7 @@ namespace CoinTrader.Forms.Strategies
                             if(maxProfit>tmp)
                             {
                                 maxProfitTime = DateTime.Now;
+                                LogDebug(string.Format("利润新高{0} {1}  利润率{2:p} 最高利润时间{3}", InstId, GetType().Name,  uplPercent, maxProfitTime));
                             }
 
                             if (maxProfit > 0 && maxProfit - uplPercent >= Retreat)
@@ -261,6 +309,7 @@ namespace CoinTrader.Forms.Strategies
                         }
                     }
                     else if (uplPercent <= -Math.Abs(StopLoss))//对冲利润到达止损值
+                    //else if (uplPercent <= StopLoss)此处修改过，需要全部重设参数才能部署 //对冲利润到达止损值
                     {
                         LogDebug("止损平仓" + InstId + " "+ GetType().Name);
                         close = true;
@@ -305,21 +354,30 @@ namespace CoinTrader.Forms.Strategies
 
                     switch (Interval)
                     {
+                        case OrderInterval.H1:
+                            placeOrder = now.Minute == 0;
+                            break;
                         case OrderInterval.D1:
-                            placeOrder = now.Hour == 0;
+                            placeOrder = now.Hour == 0 && now.Minute == 0; 
                             break;
                         case OrderInterval.H4:
-                            placeOrder = now.Hour % 4 == 0;
+                            placeOrder = now.Hour % 4 == 0 && now.Minute == 0;
                             break;
                         case OrderInterval.H6:
-                            placeOrder = now.Hour % 6 == 0;
+                            placeOrder = now.Hour % 6 == 0 && now.Minute == 0;
                             break;
                         case OrderInterval.H12:
-                            placeOrder = now.Hour % 12 == 0;
+                            placeOrder = now.Hour % 12 == 0 && now.Minute == 0;
                             break;
                         case OrderInterval.W1:
-                            placeOrder = now.DayOfWeek == 0 && now.Hour == 0;
+                            placeOrder = now.DayOfWeek == 0 && now.Hour == 0 && now.Minute == 0;
                             break;
+                    }
+
+                    if(StopLoss > 0 )
+                    {
+                        Message = "新下单时的止损为正数，参数有误！";
+                        placeOrder = false;
                     }
                     
                     if (placeOrder && placeOrderCountDown.Check())
@@ -343,7 +401,7 @@ namespace CoinTrader.Forms.Strategies
                             {
                                 LogDebug( string.Format("下单成功 {0} {1} longId {2} shortId {3}",InstId,GetType().Name,longId,shortId));
                                 //双向都成功下单
-                                Wait(5.0f);//等待数据同步
+                                Wait(30.0f);//等待数据同步
                             }
                             else
                             {
@@ -408,3 +466,4 @@ namespace CoinTrader.Forms.Strategies
         }
     }
 }
+*/
