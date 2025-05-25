@@ -77,23 +77,22 @@ namespace CoinTrader.OKXCore.Entity
         }
         public virtual void ParseFromJson(JToken data)
         {
+            this.InstrumentId = data["instId"].Value<string>();
             this.State = data.Value<string>("state");
+            this.Category = data.Value<int>("category");
 
             if (string.Compare(State, "live", true) != 0)
             {
-                //不是处于交易中的产品，可能大部分字段都是空字符
-
+                //不是处于交易中的产品，可能大部分字段都是空字符,
                 IsLive = false;
                 return;
             }
 
 
             this.IsLive = true;
-            this.InstrumentId = data["instId"].Value<string>();
             this.QuoteCcy = data["quoteCcy"].Value<string>();
             this.BaseCcy = data["baseCcy"].Value<string>();
             this.MinSize = data["minSz"].Value<decimal>();
-            this.Category = data.Value<int>("category");
             this.LotSz = data.Value<decimal>("lotSz");
             this.ListTime =  DateUtil.TimestampMSToDateTime(data.ValueWithDefault<long>("listTime"));
             this.TickSize = data["tickSz"].Value<decimal>();
