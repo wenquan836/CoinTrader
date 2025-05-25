@@ -27,6 +27,11 @@ namespace CoinTrader.OKXCore.Entity
         public string InstrumentId { get; private set; }
 
         /// <summary>
+        /// 当前是否处于可交易状态
+        /// </summary>
+        public bool IsLive { get; set; }
+
+        /// <summary>
         /// 最小可交易数量，如："0.001"
         /// </summary>
         public decimal MinSize { get; private set; }
@@ -72,12 +77,23 @@ namespace CoinTrader.OKXCore.Entity
         }
         public virtual void ParseFromJson(JToken data)
         {
+            this.State = data.Value<string>("state");
+
+            if (string.Compare(State, "live", true) != 0)
+            {
+                //不是处于交易中的产品，可能大部分字段都是空字符
+
+                IsLive = false;
+                return;
+            }
+
+
+            this.IsLive = true;
             this.InstrumentId = data["instId"].Value<string>();
             this.QuoteCcy = data["quoteCcy"].Value<string>();
             this.BaseCcy = data["baseCcy"].Value<string>();
             this.MinSize = data["minSz"].Value<decimal>();
             this.Category = data.Value<int>("category");
-            this.State = data.Value<string>("state");
             this.LotSz = data.Value<decimal>("lotSz");
             this.ListTime =  DateUtil.TimestampMSToDateTime(data.ValueWithDefault<long>("listTime"));
             this.TickSize = data["tickSz"].Value<decimal>();

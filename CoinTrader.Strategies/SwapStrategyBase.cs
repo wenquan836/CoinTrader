@@ -130,7 +130,6 @@ namespace CoinTrader.Strategies
         protected void EachPosition(Action<Position> callback)
         {
             swapRuntime.EachPosition(callback);
-
         }
 
         /// <summary>

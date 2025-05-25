@@ -295,7 +295,7 @@ namespace CoinTrader.Forms
             }
 
             this.timer1.Enabled = true;
-            TradeHistoryManager.Instance.ResyncHistory(instrument.InstrumentId, days);
+            TradeHistoryManager.Instance.ResyncSwapHistory(instrument.InstrumentId, days);
             if (!TradeHistoryManager.Instance.IsLoading(instrument.InstrumentId))
             {
                 this.LoadData();

@@ -128,9 +128,17 @@ update_time         DATETIME
         }
 
         /// <summary>
-        /// 重新同步最新的三个月数据, 完全同步， 解决历史记录缺失问题
+        /// 重新同步最新的三个月现货数据, 完全同步， 解决历史记录缺失问题
         /// </summary>
-        public Task<HistoryLoadResult> ResyncHistory(string instId,int days)
+        public Task<HistoryLoadResult> ResyncSwapHistory(string instId, int days)
+        {
+            return this.ResyncHistory(instId, InstrumentType.Swap, days);
+        }
+
+        /// <summary>
+        /// 重新同步最新的三个月现货数据, 完全同步， 解决历史记录缺失问题
+        /// </summary>
+        public Task<HistoryLoadResult> ResyncSpotHistory(string instId,int days)
         {
             return this.ResyncHistory(instId, InstrumentType.Spot, days);
         }

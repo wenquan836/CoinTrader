@@ -106,7 +106,7 @@
             this.listView1.Location = new System.Drawing.Point(17, 19);
             this.listView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1314, 731);
+            this.listView1.Size = new System.Drawing.Size(1314, 542);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -318,7 +318,7 @@
             this.panel1.Location = new System.Drawing.Point(1341, 19);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(480, 937);
+            this.panel1.Size = new System.Drawing.Size(480, 748);
             this.panel1.TabIndex = 2;
             // 
             // lblMaxBuy
@@ -445,7 +445,7 @@
             this.panel2.Controls.Add(this.btnRefresh);
             this.panel2.Controls.Add(this.dtpStart);
             this.panel2.Controls.Add(this.txtId);
-            this.panel2.Location = new System.Drawing.Point(17, 761);
+            this.panel2.Location = new System.Drawing.Point(17, 572);
             this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1804, 195);
@@ -554,7 +554,7 @@
             // 
             // txtId
             // 
-            this.txtId.Location = new System.Drawing.Point(335, 101);
+            this.txtId.Location = new System.Drawing.Point(430, 103);
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
             this.txtId.Size = new System.Drawing.Size(237, 35);
@@ -579,7 +579,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1825, 957);
+            this.ClientSize = new System.Drawing.Size(1825, 768);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.listView1);

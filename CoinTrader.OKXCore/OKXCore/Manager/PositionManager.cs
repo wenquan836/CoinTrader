@@ -325,7 +325,7 @@ namespace CoinTrader.OKXCore.Manager
         }
 
         /// <summary>
-        /// 数量转换合约张数
+        /// USD金额转换合约张数
         /// </summary>
         /// <param name="instId"></param>
         /// <param name="amount"></param>
@@ -339,7 +339,7 @@ namespace CoinTrader.OKXCore.Manager
         }
 
         /// <summary>
-        /// 合约张数转数量
+        /// 合约张数转USD金额
         /// </summary>
         /// <param name="instId"></param>
         /// <param name="sz">合约张数</param>
@@ -446,7 +446,7 @@ namespace CoinTrader.OKXCore.Manager
         }
 
         /// <summary>
-        /// 建仓或加仓，按数量下单
+        /// 建仓或加仓，按USD金额下单
         /// </summary>
         /// <param name="instId">产品类型</param>
         /// <param name="side">方向， 空头或多头</param>

@@ -18,6 +18,9 @@ namespace CoinTrader.Forms.Control
         private bool showChart = false;
         private decimal ask;
         private decimal bid;
+
+        private int sizeTotal = 0;
+        private int eraseTotal = 0;
         public TickView()
         {
             InitializeComponent();
@@ -60,6 +63,11 @@ namespace CoinTrader.Forms.Control
                 this.DrawChart();
             }
         }
+
+        private double lerp(double a,double b, double t)
+        {
+            return (b-a) * t + a;
+        }
   
 
         private void DrawChart()
@@ -99,11 +107,16 @@ namespace CoinTrader.Forms.Control
             {
                 decimal max = 0;
                 decimal min = decimal.MaxValue;
+                decimal total = 0;
+                decimal avg;
                 foreach (var p in ticks)
                 {
+                    total += p;
                     max = Math.Max(p, max);
                     min = Math.Min(p, min);
                 }
+
+                avg = total / ticks.Count;
 
                 var maxAmp = Math.Max(0.002f, (float)(max / min) - 1.0f);
 

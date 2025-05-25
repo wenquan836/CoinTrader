@@ -22,8 +22,14 @@ namespace CoinTrader.Forms
             Position pos = PositionManager.Instance.GetPosition(id);
 
             Wallet usdxWallet = USDXWallet.Instance;
+            decimal minValue = 1;
 
-            this.txtAmount.Range = new Range<decimal>( 1, usdxWallet.AvailableInTrading);
+            if(pos.Upl > 0)//盈利的
+            {
+                minValue = -pos.Upl;
+            }
+
+            this.txtAmount.Range = new Range<decimal>( minValue, usdxWallet.AvailableInTrading);
             this.txtAmount.NumberType = Control.NumberType.Decimal;
 
             if(pos != null)

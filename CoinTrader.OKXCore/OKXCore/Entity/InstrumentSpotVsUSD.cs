@@ -46,12 +46,15 @@ namespace CoinTrader.OKXCore.Entity
                 InstrumentSpot instrument = new InstrumentSpot();
                 instrument.ParseFromJson(item);
 
-                if (string.Compare(item["quoteCcy"].Value<string>(), quoteCcy, true) == 0)
+                if (instrument.IsLive)
                 {
-                    this.list[instrument.BaseCurrency.ToUpper()] = instrument;
-                }
+                    if (string.Compare(item["quoteCcy"].Value<string>(), quoteCcy, true) == 0)
+                    {
+                        this.list[instrument.BaseCurrency.ToUpper()] = instrument;
+                    }
 
-                this.InstrumentTable[instrument.InstrumentId] = instrument;
+                    this.InstrumentTable[instrument.InstrumentId] = instrument;
+                }
             }
         }
 

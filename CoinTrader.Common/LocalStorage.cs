@@ -12,6 +12,13 @@ namespace CoinTrader.Common
     {
         static JObject storageObj = null;
         static object LockObj = new object();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public static T GetValue<T>(string key)
         {
             if (string.IsNullOrEmpty(key))
@@ -70,6 +77,11 @@ namespace CoinTrader.Common
             return Path.Combine(AppContext.BaseDirectory, "Storage.json");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
         public static void SetValue(string key, object value)
         {
             JObject storage = GetStorageObject();
@@ -77,6 +89,10 @@ namespace CoinTrader.Common
             Save(storage);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="storage"></param>
         private static void Save(JObject storage)
         {
             var path = GetStoreFilePath();

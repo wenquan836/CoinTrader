@@ -49,6 +49,8 @@ namespace CoinTrader.OKXCore.Monitor
 
         private void EachOrder(OrderSide side, Action<OrderBase> callback)
         {
+            if(callback == null) throw new ArgumentNullException("callback not by null");
+
             lock (orderDict)
             {
                 foreach (var kv in orderDict)
