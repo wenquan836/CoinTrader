@@ -13,3 +13,4 @@
 CoinTrader.Forms/Config_Crypto_V5.json
 /CoinTrader.Strategies/.vs
 /CoinTrader.OKXCore/OKXCore/.vs
+CoinTrader.Forms/StrategiesBuiltin/SwapHedgeStrategy.cs
